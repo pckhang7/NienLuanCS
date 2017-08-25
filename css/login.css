@@ -13,6 +13,7 @@ body {
   flex: none;
 }
 .main {
+  height: 100%;
   flex: auto;
   overflow: auto;
   background-color: #456;
@@ -50,7 +51,18 @@ body {
   border-radius: 5px;
   background-color: #777;
 }
-/*thiet lap kieu phan than */
+/*thiet lap kieu phan .main */
+.sidebar {
+  width: 25%;
+  height: 100%;
+  background-color: red;
+}
+.section {
+  width: 75%;
+  height: 100%;
+  background-color: green;
+}
+/*========Main================*/
 
 .footer {
   bottom: 0;

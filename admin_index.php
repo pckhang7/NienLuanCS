@@ -11,7 +11,7 @@
     <!--Day la phan content -->
     <div class="main">
       <div class="sidebar"></div>
-      <div class="content"></div>
+      <div class="section"></div>
     </div>
     <?php include 'footer.php'; ?>
   </body>
