@@ -19,7 +19,6 @@ body {
   background-color: #456;
 }
 .header {
-  overflow: hidden;
   width: 100%;
   background-color: #28d;
   max-height: 80px;
@@ -31,6 +30,7 @@ body {
 .header .title {
   float: left;
   width: 500px;
+  font-size: 20px;
   margin-left: 20px;
 }
 .header .right {
@@ -52,13 +52,17 @@ body {
   background-color: #777;
 }
 /*thiet lap kieu phan .main */
+.sidebar , .section {
+  position: relative;
+  float: left;
+}
 .sidebar {
-  width: 25%;
+  width: 13%;
   height: 100%;
   background-color: red;
 }
 .section {
-  width: 75%;
+  width: 87%;
   height: 100%;
   background-color: green;
 }
@@ -66,13 +70,12 @@ body {
 
 .footer {
   bottom: 0;
-  position: absolute;
   background-color: #17c;
   color: white;
-  line-height: 60px;
+  line-height: 40px;
   text-align: center;
   width: 100%;
-  height: 60px;
+  height: 40px;
 }
 
 
