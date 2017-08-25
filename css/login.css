@@ -16,7 +16,7 @@ body {
   height: 100%;
   flex: auto;
   overflow: auto;
-  background-color: #456;
+  background-color: white;
 }
 .header {
   width: 100%;
@@ -57,20 +57,19 @@ body {
   float: left;
 }
 .sidebar {
-  width: 13%;
+  width: 150px;
   height: 100%;
-  background-color: red;
+  background-color: #005580;
 }
 .section {
-  width: 87%;
+  width: auto;
   height: 100%;
-  background-color: green;
 }
 /*========Main================*/
 
 .footer {
   bottom: 0;
-  background-color: #17c;
+  background-color: #28d;
   color: white;
   line-height: 40px;
   text-align: center;
@@ -82,7 +81,7 @@ body {
 /*khung dang nhap */
 .login {
   width: 400px;
-  margin: 16px auto;
+  margin: 30px auto;
   font-size: 16px;
 }
 
