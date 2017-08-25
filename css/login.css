@@ -1,0 +1,127 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+/*thiet lap kieu body dang "flex" va dang la "column"*/
+body {
+  display: flex;
+  flex-direction: column;
+  font-family: 'Open Sans', sans-serif;
+}
+.header, .footer {
+  flex: none;
+}
+.main {
+  flex: auto;
+  overflow: auto;
+  background-color: #456;
+}
+.header {
+  overflow: hidden;
+  width: 100%;
+  background-color: #28d;
+  max-height: 80px;
+  margin: 0 auto;
+  color: white;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.header .title {
+  float: left;
+  width: 500px;
+  margin-left: 20px;
+}
+.header .right {
+  float: right;
+}
+.header .right p {
+  display: inline-block;
+}
+.header .right a {
+  display: block;
+  width: 100px;
+  text-decoration: none;
+  color : white;
+  text-align: center;
+  margin: auto 10px;
+  height: 40px;
+  line-height: 40px;
+  border-radius: 5px;
+  background-color: #777;
+}
+/*thiet lap kieu phan than */
+
+.footer {
+  bottom: 0;
+  position: absolute;
+  background-color: #17c;
+  color: white;
+  line-height: 60px;
+  text-align: center;
+  width: 100%;
+  height: 60px;
+}
+
+
+/*khung dang nhap */
+.login {
+  width: 400px;
+  margin: 16px auto;
+  font-size: 16px;
+}
+
+/*Thiet lap lai tri tri top, bottom cua cac the*/
+.login-header , .login p {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+/*Thiet lap kieu login-header*/
+.login-header {
+  background: #28d;
+  padding: 20px;
+  font-size: 1.4em;
+  text-align: center;
+  text-transform: uppercase;
+  color: #fff;
+  font-weight: normal;
+}
+/*thiet lap kieu form ben trong */
+
+.login-container {
+  background: #ebebeb;
+  padding: 12px;
+}
+
+.login p {
+  padding: 12px;
+}
+
+.login input {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  border-width: 1px;
+  border-style: solid;
+  outline: 0;
+  padding: 16px;
+  font-family: inherit;
+  font-size: 0.95em;
+}
+
+.login input[type='text'], .login input[type='password'] {
+  background: #fff;
+  border-color: #bbb;
+  color: #555;
+}
+
+.login input[type='submit'] {
+  background: #28d;
+  border-color: transparent;
+  color: #fff;
+  cursor: pointer;
+}
+.login input[type='submit'] {
+  background: #17c;
+}
