@@ -20,7 +20,7 @@ body {
 }
 .header {
   width: 100%;
-  background-color: #28d;
+  background-color: #005580;
   max-height: 80px;
   margin: 0 auto;
   color: white;
@@ -69,7 +69,7 @@ body {
 
 .footer {
   bottom: 0;
-  background-color: #28d;
+  background-color: #005580;
   color: white;
   line-height: 40px;
   text-align: center;

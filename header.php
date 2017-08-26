@@ -6,7 +6,7 @@
     ?>
     <p><?php echo $_SESSION['login_user']; ?></p>
     <p><a href="logout.php">Đăng Xuất</a></p>
-    <?php } ?>
+  <?php } ?>
     <p><a href="logout.php">Trang Chủ</a></p>
   </div>
 </div>

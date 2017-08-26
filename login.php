@@ -36,6 +36,7 @@
         $err = "Mã đăng nhập hoăc mật khẩu không hợp lệ!";
         echo "<script type='text/javascript'>alert('$err');</script>";
       }
+      mysqli_close($con);
     }
 ?>
 <!DOCTYPE html>
