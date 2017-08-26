@@ -7,14 +7,10 @@
   width: 100%;
   height: auto;
   margin: 0;
-  display: flex;
-  flex-direction: column;
-  left: -50px;
-  position: relative;
+  padding: 0;
 }
 
-.menu-content li {
-  flex: 1;
+.menu-content li {s
   list-style-type: none;
 }
 
@@ -23,5 +19,12 @@
   width: 100%;
   text-decoration: none;
   height: 50px;
-  background-color: red;
+  line-height: 50px;
+  background-color: #005580;
+  color: white;
+  border-top: 1px solid;
+  border-bottom: 1px solid;
+}
+.menu-content li a:hover {
+  background-color: #28d;
 }
