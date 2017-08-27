@@ -8,21 +8,24 @@ body {
   display: flex;
   flex-direction: column;
   font-family: 'Open Sans', sans-serif;
+  overflow: auto;
 }
 .header, .footer {
   flex: none;
 }
 .main {
   height: 100%;
-  min-height: 100%;
   flex: auto;
+  margin: 0;
+  width: 100%;
   overflow: auto;
   background-color: white;
 }
 .header {
   width: 100%;
+  overflow: hidden;
   background-color: #005580;
-  max-height: 80px;
+  max-height: 70px;
   margin: 0 auto;
   color: white;
   font-family: 'Open Sans', sans-serif;
@@ -36,6 +39,7 @@ body {
 }
 .header .right {
   float: right;
+  position: relative;
 }
 .header .right p {
   display: inline-block;
@@ -64,7 +68,11 @@ body {
 }
 .section {
   width: auto;
+  min-width: 900px;
+  margin: 10px auto;
+  overflow: hidden;
   height: 100%;
+  background-color: red;
 }
 /*========Main================*/
 
@@ -139,4 +147,21 @@ body {
 }
 .login input[type='submit'] {
   background: #17c;
+}
+/*=============Tuy chinh kieu trang "user.php" ==========*/
+.section-header {
+  width : 100%;
+  overflow: hidden;
+  display: block;
+  margin: 0 10px;
+  height: 100px;
+  position: absolute;
+  display: inline-block;
+  background-color: blue;
+}
+.section-header #title {
+  float: left;
+}
+.section-header button {
+  float: right;
 }
