@@ -1,6 +1,5 @@
 .section-main {
   width: auto;
-
   height: auto;
   min-height: 100%;
   display: flex;
@@ -35,11 +34,12 @@
   border-radius: 1px;
   margin: 3px;
 }
-
-/*.profile .left {
+.profile p {
+  display: block;
+}
+.profile #left {
   float : left;
 }
-
-.profile .right {
-  display: right;
+.profile #right {
+  text-align: right;
 }
