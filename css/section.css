@@ -1,0 +1,32 @@
+.section-main {
+  width: auto;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.section-content {
+  width: auto;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  border: 1px solid;
+  margin: 5px;
+}
+.section-content .flex-item {
+  width: 200px;
+  height : 150px;
+  background-color: blue;
+  text-align: center;
+  line-height: 150px;
+  margin: 30px 60px;
+  border: 1px solid ;
+}
+.profile , .mark {
+  width : 100%;
+  height : auto;
+  border: 3px solid black;
+  border-radius: 1px;
+  margin: 3px;
+}
