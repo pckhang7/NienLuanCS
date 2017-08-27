@@ -14,10 +14,18 @@
       </div>
       <div class="section-content">
         <div class="profile">
+          <p>Logo</p>
+          <p>Logo</p>
+          <p>Logo</p>
+          <p>Logo</p>
+          <p>Logo</p>
+          <p>Logo</p>
+          <p>Logo</p>
+          <p>Logo</p>
         </div>
         <div class="mark">
         </div>
       </div>
-    <div>
+    </div>
   </body>
 </html>
