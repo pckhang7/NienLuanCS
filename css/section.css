@@ -6,6 +6,9 @@
   flex-direction: column;
   justify-content: space-around;
 }
+.section-content:nth-child(2n+1) {
+  background-color: #f2f2f2;
+}
 .section-content {
   max-width: 100%;
   width: auto;
@@ -14,27 +17,29 @@
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  border: 1px solid;
   margin: 5px;
 }
 .section-content .flex-item {
   width: 200px;
   height : 150px;
-  background-color: blue;
+  background-color: #008cba;
+  color: white;
   text-align: center;
   line-height: 150px;
   margin: 30px 60px;
-  border: 1px solid ;
+  border: 1px solid;
 }
 .profile , .mark {
   width : 100%;
   padding: 0;
   height : auto;
-  border: 3px solid black;
-  border-radius: 1px;
+  border: 1px solid;
+  border-radius: 5px;
   margin: 3px;
 }
-
+.profile {
+  padding: 3px;
+}
 .profile #left {
   float : left;
   font-style: oblique;
@@ -45,11 +50,18 @@
 }
 .mark {
   text-align: center;
-  padding: 0 auto;
+  padding:  auto;
 }
 .mark table {
   border-collapse: collapse;
+  padding : 15px;
+  width : 500px;
+  margin : 10px auto;
 }
-.mark h4 {
-  margin: 0 ;
+.mark table tr:nth-child(even) {
+  background: #f2f2f2;
+}
+.mark table th {
+  background-color: #005580;
+  color: white;
 }

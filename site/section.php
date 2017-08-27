@@ -22,6 +22,7 @@
         </div>
         <div class="mark">
           <h4>Bảng tính thang điểm</h4>
+          <hr>
           <table border="1">
             <tr>
               <th>Điểm chữ</th>
