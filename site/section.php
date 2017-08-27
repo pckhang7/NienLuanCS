@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>Section Admin Index PHP</title>
-    <link rel="stylesheet" href="css/section.css">
+    <link rel="stylesheet" href="../css/section.css">
   </head>
   <body>
     <div class="section-main">
@@ -14,7 +14,7 @@
       </div>
       <div class="section-content">
         <div class="profile">
-          <p><div id="left">Logo: </div><div id="right"><img src="img/logo/logo.png" style="width:100px;height:100px"></img></div></p>
+          <p><div id="left">Logo: </div><div id="right"><img src="../img/logo/logo.png" style="width:100px;height:100px"></img></div></p>
           <p><div id="left">Tên trường: </div><div id="right">Đại Học Cần Thơ</div></p>
           <p><div id="left">Địa chỉ: </div><div id="right">đường 3/2, quận Ninh Kiều, TP Cần Thơ</div></p>
           <p><div id="left">Số điện thoại(liên hệ): </div><div id="right">(84-292) 3832663</div></p>

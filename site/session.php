@@ -13,6 +13,6 @@
   $login_session = $row['username'];
   if (!isset($login_session)){
     mysqli_close($con);//Dong ket noi
-    header("Location: login.php");
+    header("Location: ../login.php");
   }
  ?>

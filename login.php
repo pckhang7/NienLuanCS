@@ -1,5 +1,5 @@
 <?php
-    include_once 'connect.php';
+    include_once 'site/connect.php';
 
     session_start();
     $err = "";
@@ -23,13 +23,13 @@
       if ($count == 1) {
         $_SESSION['login_user'] = $username;
         if ($row['type'] == 'admin') {
-          header ("Location: admin_index.php");
+          header ("Location: site/admin_index.php");
         }
         else if ($row['type'] == "student") {
-          header ("Location: student_index.php");
+          header ("Location: site/student_index.php");
         }
         else {
-          header ("Location: teacher_index.php");
+          header ("Location: site/teacher_index.php");
         }
       }
       else {
@@ -47,7 +47,7 @@
     <link rel="stylesheet" href="css/login.css">
   </head>
   <body>
-      <?php include 'header.php'; ?>
+      <?php include 'site/header.php'; ?>
 
       <div class="main">
         <div class="content">
@@ -62,6 +62,6 @@
         </div>
       </div>
 
-      <?php include 'footer.php'; ?>
+      <?php include 'site/footer.php'; ?>
   </body>
 </html>
