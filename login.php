@@ -8,7 +8,7 @@
       $password = mysqli_escape_string($con,$_POST['password']);
       $password = md5($password);
       //$password = md5($password);
-      $sql = "SELECT * From user WHERE username = '$username' and password = '$password'";
+      $sql = "SELECT * From user WHERE username = '$username' and md5password = '$password'";
       $result = mysqli_query($con, $sql);
       $row = mysqli_fetch_array($result);
 
