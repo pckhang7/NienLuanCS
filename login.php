@@ -1,43 +1,28 @@
 <?php
-    include_once 'site/connect.php';
-
     session_start();
+    include 'site/connection.php';
+    include 'site/class.user.php';
     $err = "";
+    $user = new user();
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-      $username = mysqli_escape_string($con,$_POST['username']);
-      $password = mysqli_escape_string($con,$_POST['password']);
-      $password = md5($password);
-      //$password = md5($password);
-      $sql = "SELECT * From user WHERE username = '$username' and md5password = '$password'";
-      $result = mysqli_query($con, $sql);
-      $row = mysqli_fetch_array($result);
-
-      //Tao session
-      $_SESSION['userid'] = $row['id'];
-      $_SESSION['type'] = $row['type'];
-
-
-      $count = mysqli_num_rows($result);
-
-
-      if ($count == 1) {
-        $_SESSION['login_user'] = $username;
-        if ($row['type'] == 'admin') {
-          header ("Location: site/admin_index.php");
-        }
-        else if ($row['type'] == "student") {
-          header ("Location: site/student_index.php");
-        }
-        else {
-          header ("Location: site/teacher_index.php");
-        }
+      $username = $_POST['username'];
+      $password = $_POST['password'];
+      //Tranh tan cong bang SQL Injection
+      $username = stripcslashes($username);
+      $password = stripcslashes($password);
+      $username = mysqli_escape_string($con,$username);
+      $password = mysqli_escape_string($con,$password);
+      $login = $user->login($con,$username, $password);
+      if ($login) {
+        header ("Location: site/admin_index.php");
       }
       else {
         $err = "Mã đăng nhập hoăc mật khẩu không hợp lệ!";
         echo "<script type='text/javascript'>alert('$err');</script>";
       }
-      mysqli_close($con);
     }
+
+    mysqli_close($con);
 ?>
 <!DOCTYPE html>
 <html>

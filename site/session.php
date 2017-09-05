@@ -1,11 +1,11 @@
 <?php
 /*Ket noi den co so du lieu*/
-  include 'connect.php';
+  include 'connection.php';
 
   //Bat dau session
   session_start();
   //luu tru session
-  $user_check = $_SESSION['login_user'];
+  $user_check = $_SESSION['username'];
   $sql = "SELECT * FROM user WHERE username = '$user_check'";
   $result = mysqli_query($con, $sql);
   $row = mysqli_fetch_array($result);

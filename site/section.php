@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="../css/section.css">
   </head>
   <body>
-    <div class="section-main">
+    <div class="section">
       <div class="section-content">
         <div class="flex-item">Tài khoản người dùng</div>
         <div class="flex-item">Sinh viên</div>

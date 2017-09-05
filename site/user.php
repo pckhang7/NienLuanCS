@@ -16,21 +16,30 @@
       <?php include 'sidebar.php'; ?>
       <div class="section">
         <div class="section-header">
-          <h2 id="title">Quản lý tài khoản người dùng</h2>
-          <button type="button" name="create">Tạo user mới</button>
+          <div id="title"><h2 id="title">Quản lý tài khoản người dùng</h2></div>
+          <div id="button"><a href="create_user.php">Tạo tài khoản người dùng</a></div>
+          <p id="search">
+            <form action="<?php echo $_SERVER[PHP_SELF] ?>" method="post" class="form">
+              Tìm theo mã đăng nhập: <input type="text"/>
+              <input type="submit" name="Search" value="Tìm">
+            </form>
+          </p>
         </div>
         <div class="section-table">
           <?php
-          include 'connect.php';
-          $sql = "Select * from user";
-          $result = mysqli_query($con,$sql);
+          include 'connection.php';
+          include 'class.user.php';
+          $user = new user();
+          $sql = "SELECT * FROM user WHERE type= 'sinhvien' OR  type = 'giangvien' ";
+          $result = $user->get_all_user($con,$sql);
           ?>
           <table border="1">
             <tr>
-              <th>Userid</th>
-              <th>Username</th>
-              <th>Password</th>
-              <th>Loai</th>
+              <th>Số thứ tự</th>
+              <th>Mã đăng nhập</th>
+              <th>Mật khẩu</th>
+              <th>Loại tài khoản</th>
+              <th colspan="3">Thao tác</th>
             </tr>
           <?php
           while ($row = mysqli_fetch_assoc($result)) {
@@ -39,11 +48,13 @@
               echo "<td>{$row['username']}</td>";
               echo "<td>{$row['password']}</td>";
               echo "<td>{$row['type']}</td>";
-              echo "<td><a href='#'>Xem chi tiết</a></td>";
-              echo "<td><a href='#'>Sửa</a></td>";
-              echo "<td><a href='#'>Xóa</a></td>";
+              echo '<td><a id="info" href="user_profile.php?id=' . $row['username'] . '">Xem chi tiết</a></td>';
+              echo "<td><a id='edit' href='#'>Sửa</a></td>";
+              echo "<td><a id='delete' href='#'>Xóa</a></td>";
             echo "</tr>";
           }
+
+          mysqli_close($con);
            ?>
          </table>
         </div>
