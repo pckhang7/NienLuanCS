@@ -2,7 +2,6 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <meta http-equiv="refresh" content="10">
     <title>Tao nguoi dung moi</title>
     <link rel="stylesheet" href="../css/login.css">
   </head>
@@ -25,8 +24,10 @@
           if ($check_table === TRUE) {
             $query = $user->insert_user($con, $username,$md5password, $password,$type);
             if ($query === TRUE){
-              echo "<script type='text/javascript'>alert('Tạo người dùng thành công');</script>";
-              header ("Location : create_user.php");
+              echo "<script type='text/javascript'>
+                      alert('Tạo người dùng thành công');
+                      window.location.href='create_user.php';
+                    </script>";
             }
           }
           else {

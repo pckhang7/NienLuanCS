@@ -8,11 +8,6 @@
     <title>Quản lý user</title>
     <link rel="stylesheet" href="../css/login.css">
     <link rel="stylesheet" href="../css/sidebar.css">
-    <script language="JavaScript" type="text/javascript">
-      function delete_user() {
-        return confirm("Bạn có thật sự muốn xóa người dùng này!");
-      }
-    </script>
   </head>
   <body>
     <?php include 'header.php'; ?>
@@ -68,7 +63,7 @@
               echo "<td>{$row['type']}</td>";
               echo '<td><a id="info" href="view_user.php?id=' . $row['username'] . '">Xem chi tiết</a></td>';
               echo '<td><a id="edit" href="edit_user.php?id=' . $row['username'] . '">Sửa</a></td>';
-              echo "<td><a onclick='delete_user();' id='delete' href='delete_user.php?id={$row["username"]}'>Xóa</a></td>";
+              echo "<td><a id='delete' href='delete_user.php?id={$row["username"]}' onclick='return confirm(\"Ban co chac xoa \")'>Xóa</a></td>";
             echo "</tr>";
           }
 
