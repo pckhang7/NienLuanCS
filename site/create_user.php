@@ -2,6 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <meta http-equiv="refresh" content="10">
     <title>Tao nguoi dung moi</title>
     <link rel="stylesheet" href="../css/login.css">
   </head>
@@ -25,6 +26,7 @@
             $query = $user->insert_user($con, $username,$md5password, $password,$type);
             if ($query === TRUE){
               echo "<script type='text/javascript'>alert('Tạo người dùng thành công');</script>";
+              header ("Location : create_user.php");
             }
           }
           else {
@@ -40,14 +42,11 @@
         echo "<div id='error'>Bạn chưa loại tài khoản người dùng</div>";
       }
     }
-    else {
-        echo "<div id='error'>Bạn chưa nhập thông tin</div>";
-    }
     mysqli_close($con);
      ?>
 
      <div class="main">
-       <form action="create_user.php" method="post">
+       <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post">
          <p>Mã đăng nhập :</p>
          <p><input type="text" name="username" placeholder="mã đăng nhập"></p>
          <p>Mật khẩu : </p><p><input type="text" name="password" placeholder="mật khẩu"></p>

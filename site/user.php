@@ -8,6 +8,11 @@
     <title>Quản lý user</title>
     <link rel="stylesheet" href="../css/login.css">
     <link rel="stylesheet" href="../css/sidebar.css">
+    <script language="JavaScript" type="text/javascript">
+      function delete_user() {
+        return confirm("Bạn có thật sự muốn xóa người dùng này!");
+      }
+    </script>
   </head>
   <body>
     <?php include 'header.php'; ?>
@@ -19,9 +24,9 @@
           <div id="title"><h2 id="title">Quản lý tài khoản người dùng</h2></div>
           <div id="button"><a href="create_user.php">Tạo tài khoản người dùng</a></div>
           <p id="search">
-            <form action="<?php echo $_SERVER[PHP_SELF] ?>" method="post" class="form">
-              Tìm theo mã đăng nhập: <input type="text"/>
-              <input type="submit" name="Search" value="Tìm">
+            <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" class="form">
+              Tìm theo mã đăng nhập: <input type="text" name="keyword"/>
+              <input type="submit" name="search" value="Tìm">
             </form>
           </p>
         </div>
@@ -31,6 +36,19 @@
           include 'class.user.php';
           $user = new user();
           $sql = "SELECT * FROM user WHERE type= 'sinhvien' OR  type = 'giangvien' ";
+          if (isset($_POST['search'])) {
+            $keyword = $_POST['keyword'];
+            $check = $user->check_user_exist($con,$keyword);
+            if ($check == FALSE) {
+              $sql = "SELECT * FROM user WHERE username='$keyword'";
+            }
+            else {
+              echo "<script>
+                  alert('Mã đăng nhập không tồn tại!');
+                  window.location.href='user.php';
+              </script>";
+            }
+          }
           $result = $user->get_all_user($con,$sql);
           ?>
           <table border="1">
@@ -48,9 +66,9 @@
               echo "<td>{$row['username']}</td>";
               echo "<td>{$row['password']}</td>";
               echo "<td>{$row['type']}</td>";
-              echo '<td><a id="info" href="user_profile.php?id=' . $row['username'] . '">Xem chi tiết</a></td>';
-              echo "<td><a id='edit' href='#'>Sửa</a></td>";
-              echo "<td><a id='delete' href='#'>Xóa</a></td>";
+              echo '<td><a id="info" href="view_user.php?id=' . $row['username'] . '">Xem chi tiết</a></td>';
+              echo '<td><a id="edit" href="edit_user.php?id=' . $row['username'] . '">Sửa</a></td>';
+              echo "<td><a onclick='delete_user();' id='delete' href='delete_user.php?id={$row["username"]}'>Xóa</a></td>";
             echo "</tr>";
           }
 

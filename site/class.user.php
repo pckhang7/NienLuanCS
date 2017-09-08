@@ -60,6 +60,31 @@ class user {
       return false;
     }
   }
+  //ham xoa nguoi dung
+  public function delete_user($con, $username) {
+    $query = "DELETE FROM user WHERE username = '$username'";
+    $result = mysqli_query($con,$query);
+    if ($result) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+
+  //ham cap nhat nguoi dung
+  public function update_user($con,$username,$password, $md5password) {
+    $query = "UPDATE user
+              SET password='$password', md5password='$md5password'
+              WHERE username = '$username'";
+    $result = mysqli_query($con,$query);
+    if ($result) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
 
   //Ham kiem tra ten nguoi dung da ton tai trong bang "user" hay khong
   public function check_user_exist($con,$username) {
