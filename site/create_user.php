@@ -7,10 +7,12 @@
   </head>
   <body>
     <?php
+    session_start();
     include "header.php";
     include 'footer.php';
     include 'connection.php';
     include 'class.user.php';
+    $err = '';
     if ($_SERVER['REQUEST_METHOD'] == "POST") {
       $user = new user();
       $username = mysqli_escape_string($con,$_POST['username']);
@@ -31,35 +33,56 @@
             }
           }
           else {
-            echo "<div id='error'>Mã đăng nhập phải là mã $type </div>";
+            $err= "Mã đăng nhập phải là mã sinh viên hoặc giảng viên";
           }
 
         }
         else {
-          echo "<div id='error'>Tên người dùng đã tồn tại</div>";
+          $err = 'Tên người dùng đã tồn tại';
         }
       }
       else {
-        echo "<div id='error'>Bạn chưa loại tài khoản người dùng</div>";
+        $err='Bạn chưa loại tài khoản người dùng';
       }
     }
     mysqli_close($con);
      ?>
 
      <div class="main">
-       <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post">
-         <p>Mã đăng nhập :</p>
-         <p><input type="text" name="username" placeholder="mã đăng nhập"></p>
-         <p>Mật khẩu : </p><p><input type="text" name="password" placeholder="mật khẩu"></p>
-         <p>Loại tài khoản :</p>
-          <p>
-            <select name="type">
-              <option value="sinhvien">Sinh viên</option>
-              <option value="giangvien">Giảng viên</option>
-            </select>
-          </p>
-         <p><input type="submit" value="Tạo"></p>
-       </form>
+       <div class="create-user">
+         <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post">
+           <div id="title">Tạo tài khoản người dùng mới</div>
+           <div id="hr"><hr></div>
+           <div id="error">
+             <?php echo $err; ?>
+           </div>
+           <div id="section">
+             <div id="label"><label>Mã đăng nhập :</label></div>
+             <input type="text" name="username" placeholder="mã đăng nhập">
+           </div>
+           <div id="section">
+             <div id="label"><label>Mật khẩu :</label></div>
+             <input type="text" name="password" placeholder="mật khẩu">
+           </div>
+           <div id="section">
+             <div id="label"><label>Loại tài khoản :</label></div>
+             <select name="type">
+               <option value="sinhvien">Sinh viên</option>
+               <option value="giangvien">Giảng viên</option>
+             </select>
+           </div>
+           <div id="section">
+             <div id="label">
+               <div id="note"><div id="note-title"> Chú ý:</div>Mã đăng nhập phải là mã sinh viên hay
+                 là mã giảng viên tùy vào loại tài khoản.
+               </div>
+             </div>
+           </div>
+           <div id="section">
+             <input type="submit" value="Tạo">
+           </div>
+        </form>
+      </div>
      </div>
   </body>
 </html>
