@@ -92,28 +92,45 @@ class user {
     $result = mysqli_query($con, $query);
     $count = mysqli_num_rows($result);
     if ($count > 0) {
-      return false;
+      return TRUE;
     }
     else {
-      return true;
+      return FALSE;
     }
   }
 
-  //Ham kiem tra ten nguoi dung co ton tai trong bang "sinhvien" hay "giangvien"
+  /*Ham kiem tra ten nguoi dung co ton tai trong bang "sinhvien" hay "giangvien"
+    -Neu la sinh viên thì trả về true
+    -Ngươc lại là giảng viên trả về false
+    */
+
   public function check_user_exist_table ($con,$username,$type) {
     if ($type == 'sinhvien') {
       $query = "SELECT * FROM sinhvien WHERE sinhvien.Ma_SV = '$username' ";
     }
-    else {
-      $query = "SELECT * FROM giangvien WHERE giangvien.Ma_GV = '$username' ";
-    }
     $result = mysqli_query($con,$query);
-    $count = mysqli_num_rows($result);
-    if ($count == 1) {
-      return true;
+    if ($result) {
+      return TRUE;
     }
     else {
-      return false;
+      return FALSE;
+    }
+  }
+  /*Hàm trả lại bảng(sinh viên hoặc giảng viên) từ mã đầu vào :
+    -Nếu là sinh viên : trả về chuoi 'sinhvien'
+    -Ngược lại nếu là giảng viên : trả về 'giangvien'.
+  */
+  public function return_table($con,$ma){
+    $sql = "SELECT * FROM sinhvien WHERE Ma_SV = '$ma'";
+    $result = mysqli_query($con, $sql);
+    $count = mysqli_num_rows($result);
+    $str1 = "sinhvien";
+    $str2 = "giangvien";
+    if ($count > 0) {
+      return $str1;
+    }
+    else {
+      return $str2;
     }
   }
 }

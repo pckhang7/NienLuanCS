@@ -7,7 +7,6 @@
   </head>
   <body>
     <?php
-    session_start();
     include "header.php";
     include 'footer.php';
     include 'connection.php';
@@ -19,11 +18,14 @@
       $password = mysqli_escape_string($con,$_POST['password']);
       $md5password = md5($password);
       $type = $_POST['type'] ? $_POST['type'] : false;
+      //Kiểm tra người dùng có chọn loại tài khoản hay chưa
       if ($type) {
         $check = $user->check_user_exist($con,$username);
-        if ($check === TRUE) {
-          $check_table = $user->check_user_exist_table($con,$username,$type);
-          if ($check_table === TRUE) {
+        //Kiểm tra xem người dùng đã tồn tại chưa
+        if ($check === FALSE) {
+          $table_name = $user->return_table($con,$username);
+          //Kiem tra mã đăng nhập phài nằm trong loại tài khoản
+          if ($type == $table_name) {
             $query = $user->insert_user($con, $username,$md5password, $password,$type);
             if ($query === TRUE){
               echo "<script type='text/javascript'>
@@ -33,9 +35,8 @@
             }
           }
           else {
-            $err= "Mã đăng nhập phải là mã sinh viên hoặc giảng viên";
+            $err = 'Mã đăng nhập không cùng loại tài khoản';
           }
-
         }
         else {
           $err = 'Tên người dùng đã tồn tại';

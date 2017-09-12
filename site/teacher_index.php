@@ -1,5 +1,4 @@
 <?php
-session_start();
 //ket noi db
 include 'connect.php';
 

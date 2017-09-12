@@ -8,16 +8,6 @@ class student {
   private $Sdt;
   private $Ma_Nganh;
 
-
-  public function __construct($Ma_SV,$Ho,$Ten,$Dia_Chi,$Email,$Sdt,$Ma_Nganh) {
-    $this->Ma_SV = $Ma_SV;
-    $this->Ho = $Ho;
-    $this->Ten = $Ten;
-    $this->Dia_Chi = $Dia_Chi;
-    $this->Email = $Email;
-    $this->Sdt = $Sdt;
-    $this->Ma_Nganh = $Ma_Nganh;
-  }
   public function getMaSV() {
     return $this->Ma_SV;
   }
@@ -28,7 +18,25 @@ class student {
     return $this->Ten;
   }
 
-  
+  //Ham tra ve tat ca sinh vien
+  public function get_all_student($con,$sql) {
+    $result = mysqli_query($con,$sql);
+    return $result;
+  }
+
+  //Ham kiem tra xem ma sinh vien co ton tai trong bang sinh vien hay khong
+  public function check_student($con,$username) {
+    $sql = "SELECT * FROM sinhvien WHERE Ma_SV = '$username'";
+    $result = mysqli_query($con, $sql);
+    $count = mysqli_num_rows($result);
+    if ($count > 0) {
+      return TRUE;
+    }
+    else {
+      return FALSE;
+    }
+  }
+
 }
 
 

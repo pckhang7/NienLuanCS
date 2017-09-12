@@ -1,5 +1,5 @@
 <?php
-  include 'session.php';
+
   ?>
 <!DOCTYPE html>
 <html>
@@ -34,7 +34,7 @@
           if (isset($_POST['search'])) {
             $keyword = $_POST['keyword'];
             $check = $user->check_user_exist($con,$keyword);
-            if ($check == FALSE) {
+            if ($check == TRUE) {
               $sql = "SELECT * FROM user WHERE username='$keyword'";
             }
             else {
@@ -52,6 +52,7 @@
               <th>Mã đăng nhập</th>
               <th>Mật khẩu</th>
               <th>Loại tài khoản</th>
+              <th>Ngày tạo</th>
               <th colspan="3">Thao tác</th>
             </tr>
           <?php
@@ -61,6 +62,7 @@
               echo "<td>{$row['username']}</td>";
               echo "<td>{$row['password']}</td>";
               echo "<td>{$row['type']}</td>";
+              echo "<td>{$row['date_create']}</td>";
               echo '<td><a id="info" href="view_user.php?id=' . $row['username'] . '">Xem chi tiết</a></td>';
               echo '<td><a id="edit" href="edit_user.php?id=' . $row['username'] . '">Sửa</a></td>';
               echo "<td><a id='delete' href='delete_user.php?id={$row["username"]}' onclick='return confirm(\"Ban co chac xoa \")'>Xóa</a></td>";

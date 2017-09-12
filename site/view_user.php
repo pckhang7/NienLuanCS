@@ -16,14 +16,16 @@ include 'footer.php';
       include 'class.user.php';
       $user = new user();
       $username = $_REQUEST['id'];
-      $type = $user->get_type($con,$username);
-      if ($type == 'sinhvien') {
+      $table_name = $user->return_table($con,$username);
+      if ($table_name == "sinhvien") {
         $query = "SELECT * FROM sinhvien WHERE Ma_SV = '$username'";
-        $str = "Mã Sinh Viên:";
+        $str = 'Mã sinh viên:';
+        $ma = 'Ma_SV';
       }
       else {
         $query = "SELECT * FROM giangvien WHERE Ma_GV = '$username'";
-        $str = "Mã Giảng Viên:";
+        $str = 'Mã giảng viên:';
+        $ma = 'Ma_GV';
       }
       $result = mysqli_query($con,$query);
       $rows = mysqli_fetch_assoc($result);
@@ -39,7 +41,7 @@ include 'footer.php';
               <?php echo $str; ?>
             </div>
             <div id="element">
-              <?php echo $rows['Ma_SV']; ?>
+              <?php echo $rows[$ma]; ?>
             </div>
           </div>
           <div id="hr"><hr></div>

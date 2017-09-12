@@ -19,6 +19,9 @@
             <a href="#">Xem danh sách học phần</a>
           </div>
           <div id="section">
+            <a href="#">Xem danh nhóm học phần</a>
+          </div>
+          <div id="section">
             <a href="#">Cập nhật giảng viên</a>
           </div>
           <div id="section">

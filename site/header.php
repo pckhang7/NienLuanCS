@@ -7,6 +7,6 @@
     <p><?php echo $_SESSION['username']; ?></p>
     <p><a href="logout.php">Đăng Xuất</a></p>
   <?php } ?>
-    <p><a href="<?php $_SERVER['PHP_SELF']; ?>">Trang Chủ</a></p>
+    <p><a href="<?php $_SERVER['PHP_SELF']; ?>">Trang chủ</a></p>
   </div>
 </div>
