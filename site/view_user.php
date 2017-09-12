@@ -1,9 +1,3 @@
-<?php
-include 'connection.php';
-include 'header.php';
-include 'footer.php';
- ?>
-
 <!DOCTYPE html>
 <html>
   <head>
@@ -13,6 +7,8 @@ include 'footer.php';
   </head>
   <body>
     <?php
+      include 'connection.php';
+      include 'header.php';
       include 'class.user.php';
       $user = new user();
       $username = $_REQUEST['id'];
@@ -104,5 +100,8 @@ include 'footer.php';
       }
       mysqli_close($con);
      ?>
+     <?php
+     include 'footer.php';
+      ?>
   </body>
 </html>

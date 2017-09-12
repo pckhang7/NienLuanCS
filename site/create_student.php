@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Tao nguoi dung moi</title>
+    <title>Trang tạo người dùng</title>
     <link rel="stylesheet" href="../css/login.css">
   </head>
   <body>
@@ -10,7 +10,7 @@
     include "header.php";
     include 'session.php';
     include 'connection.php';
-    include 'class.user.php';
+    include 'class.student.php';
     $err = '';
     if ($_SERVER['REQUEST_METHOD'] == "POST") {
       $user = new user();
@@ -52,30 +52,38 @@
      <div class="main">
        <div class="create-user">
          <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post">
-           <div id="title">Tạo tài khoản người dùng mới</div>
+           <div id="title">Tạo sinh viên mới</div>
            <div id="hr"><hr></div>
            <div id="error">
              <?php echo $err; ?>
            </div>
            <div id="section">
-             <div id="label"><label>Mã đăng nhập :</label></div>
-             <input type="text" name="username" placeholder="mã đăng nhập">
+             <div id="label"><label>Mã số sinh viên :</label></div>
+             <input type="text" name="ma_sv" placeholder="Mã sinh viên">
            </div>
            <div id="section">
-             <div id="label"><label>Mật khẩu :</label></div>
-             <input type="text" name="password" placeholder="mật khẩu">
+             <div id="label"><label>Họ :</label></div>
+             <input type="text" name="ho" placeholder="Họ">
            </div>
            <div id="section">
-             <div id="label"><label>Loại tài khoản :</label></div>
-             <select name="type">
-               <option value="sinhvien">Sinh viên</option>
-               <option value="giangvien">Giảng viên</option>
-             </select>
+             <div id="label"><label>Tên :</label></div>
+             <input type="text" name="ten" placeholder="Tên">
+           </div>
+           <div id="section">
+             <div id="label"><label>Địa chỉ :</label></div>
+             <textarea name="dia_chi" rows="8" cols="80"></textarea>
+           </div>
+           <div id="section">
+             <div id="label"><label>Email :</label></div>
+             <input type="text" name="email" placeholder="Email">
+           </div>
+           <div id="section">
+             <div id="label"><label>Mã ngành :</label></div>
+             <input type="text" name="ma_nganh" placeholder="Mã ngành">
            </div>
            <div id="section">
              <div id="label">
-               <div id="note"><div id="note-title"> Chú ý:</div>Mã đăng nhập phải là mã sinh viên hay
-                 là mã giảng viên tùy vào loại tài khoản.
+               <div id="note"><div id="note-title"> Chú ý:</div>Mã số sinh viên phải là 8 ký tự
                </div>
              </div>
            </div>
@@ -85,7 +93,7 @@
         </form>
       </div>
      </div>
-     <!-- Phần footer -->
+     <!--Phần header -->
      <?php
       include 'footer.php';
       ?>

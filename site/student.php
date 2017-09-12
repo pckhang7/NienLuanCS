@@ -8,8 +8,8 @@
   <body>
     <?php
     include 'connection.php';
+    include 'session.php';
     include 'header.php';
-    include 'footer.php';
     include 'class.student.php';
     $student = new student();
     $sql = "SELECT * FROM sinhvien";
@@ -64,7 +64,7 @@
                  echo "<td>{$row['Ma_Nganh']}</td>";
                  echo '<td><a id="info" href="view_user.php?id=' . $row['Ma_SV'] . '">Xem chi tiết</a></td>';
                  echo '<td><a id="edit" href="edit_student.php?id=' . $row['Ma_SV'] . '">Sửa</a></td>';
-                 echo "<td><a id='delete' href='delete_user.php?id={$row["Ma_SV"]}' onclick='return confirm(\"Ban co chac xoa \")'>Xóa</a></td>";
+                 echo "<td><a id='delete' href='delete_student.php?id={$row["Ma_SV"]}' onclick='return confirm(\"Bạn có chắc xóa sinh viên cùng với tài khoản đăng nhập! \")'>Xóa</a></td>";
                echo "</tr>";
              }
              mysqli_close($con);
@@ -73,5 +73,9 @@
          </div>
        </div>
      </div>
+     <!-- Phần footer -->
+     <?php
+     include 'footer.php';
+      ?>
   </body>
 </html>

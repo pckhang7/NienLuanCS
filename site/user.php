@@ -1,6 +1,3 @@
-<?php
-
-  ?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -10,7 +7,10 @@
     <link rel="stylesheet" href="../css/sidebar.css">
   </head>
   <body>
-    <?php include 'header.php'; ?>
+    <?php
+      include 'header.php';
+      include 'session.php'; 
+    ?>
     <!--Day la phan content -->
     <div class="main">
       <?php include 'sidebar.php'; ?>

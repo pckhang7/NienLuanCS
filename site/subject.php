@@ -2,7 +2,6 @@
   include 'session.php';
   include 'connection.php';
   include 'header.php';
-  include 'footer.php';
  ?>
 <!DOCTYPE html>
 <html>
@@ -32,13 +31,9 @@
         <div class="search">
           <form class="" action="<?php $_SERVER['PHP_SELF'] ?>" method="post">
             <select name="hocki" id="hk">
-              <?php
-                  $sql1 = "SELECT * From hocki";
-                  $result1 = mysqli_query($con,$sql1);
-                  while ($row = mysqli_fetch_assoc($result1)) {
-                    echo "<option value='{$row["Ma_HK"]}'>{$row["Ten_HK"]}</option>";
-                  }
-              ?>
+              <option value="hk1">Học kì 1</option>
+              <option value="hk2">Học kì 2</option>
+              <option value="hk3">Học kì 3</option>
             </select>
             <select name="namhoc" id="nh">
             <?php
@@ -54,5 +49,8 @@
         </div>
       </div>
     </div>
+    <?php
+      include 'footer.php';
+     ?>
   </body>
 </html>

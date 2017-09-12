@@ -8,9 +8,9 @@
   <body>
     <?php
     include 'connection.php';
+    include 'session.php';
     include 'class.user.php';
     include 'header.php';
-    include 'footer.php';
     $user = new user();
     $username = null;
     if (!empty($_GET['id'])) {
@@ -69,5 +69,7 @@
          </form>
        </div>
      </div>
+     <!--Phần footer-->
+     <?php include 'footer.php'; ?>
   </body>
 </html>

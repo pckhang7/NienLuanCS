@@ -37,6 +37,37 @@ class student {
     }
   }
 
+  //Hàm update thông tin sinh viên với mã sinh viên, và mã ngành
+  public function update_student($con,$ma_sv,$ho,$ten,$dia_chi,$email,$sdt,$ma_nganh) {
+    $sql = "UPDATE sinhvien
+            SET Ho='$ho', Ten='$ten', Dia_Chi='$dia_chi',Email='$email', sdt='$sdt'
+            WHERE Ma_SV='$ma_sv' AND Ma_Nganh='$ma_nganh'";
+    $result = mysqli_query($con,$sql);
+    if ($result) {
+      return TRUE;
+    }
+    else {
+      return FALSE;
+    }
+  }
+
+  //Hàm xóa một sinh viên (đồng thời xóa lun tài khoản đăng nhập)
+  public function delete_student($con,$ma_sv) {
+    $query = "SELECT * FROM user WHERE username='$ma_sv'";
+    $result = mysqli_query($con,$query);
+    $count = mysqli_fetch_assoc($result);
+    if ($count > 0) {
+      $sql = "DELETE sinhvien, user FROM sinhvien, user
+              WHERE sinhvien.Ma_SV = user.username AND sinhvien.Ma_SV = '$ma_sv'";
+    }
+    else {
+      $sql = "DELETE FROM sinhvien
+              WHERE sinhvien.Ma_SV = '$ma_sv'";
+    }
+    $result1 = mysqli_query($con,$sql);
+    return $result1;
+  }
+
 }
 
 
