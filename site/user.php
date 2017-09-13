@@ -8,8 +8,8 @@
   </head>
   <body>
     <?php
-      include 'header.php';
       include 'session.php';
+      include 'header.php';
     ?>
     <!--Day la phan content -->
     <div class="main">
