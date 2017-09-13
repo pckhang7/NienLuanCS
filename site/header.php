@@ -1,7 +1,18 @@
 <?php
   $homepage = '';
-  if ($_SESSION['type'] == 'admin') {
+  if (isset($_SESSION['type'])) {
+    if ($_SESSION['type'] == 'admin'){
       $homepage = 'admin_index.php';
+    }
+    if ($_SESSION['type'] == 'student'){
+      $homepage = 'student_index.php';
+    }
+    if ($_SESSION['type'] == 'teacher'){
+      $homepage = 'teacher_index.php';
+    }
+  }
+  else {
+    $homepage = 'login.php';
   }
  ?>
 <div class="header">

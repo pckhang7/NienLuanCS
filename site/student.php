@@ -32,7 +32,7 @@
        <div class="section">
          <div class="section-header">
            <div id="title"><h2 id="title">Quản lý sinh viên</h2></div>
-           <div id="button"><a href="create_student.php">Tạo sinh viên mới</a></div>
+           <div id="button"><a href="create.php?loai=sinhvien">Tạo sinh viên mới</a></div>
            <p id="search">
              <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" class="form">
                Tìm theo mã sinh viên: <input type="text" name="keyword"/>
