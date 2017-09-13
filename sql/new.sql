@@ -21,7 +21,7 @@ INSERT INTO sinhvien VALUES('B1401053','Nguyen', 'Van D','3/2,Q.Ninh Kieu, TP Ca
 INSERT INTO sinhvien VALUES('B1401054','Nguyen', 'Van E','3/2,Q.Ninh Kieu, TP Can Tho','nve@gmail.com','09xxxxxx','DI14V7A2');
 INSERT INTO sinhvien VALUES('B1401055','Nguyen', 'Van F','3/2,Q.Ninh Kieu, TP Can Tho','nvf@gmail.com','09xxxxxx','DI14V7A2');
 --Insert vào bảng giảng viên
-INSERT INTO giangvien VALUES('G1401051','Tran', 'Van A','3/2,Q.Cái Răng, TP Can Tho','tva@gmail.com','09xxxxxx','DI14V7A2');
-INSERT INTO giangvien VALUES('G1401052','Tran', 'Van B','3/2,Q.Cái Răng, TP Can Tho','tvb@gmail.com','09xxxxxx','DI14V7A2');
-INSERT INTO giangvien VALUES('G1401053','Tran', 'Van C','3/2,Q.Cái Răng, TP Can Tho','tvc@gmail.com','09xxxxxx','DI14V7A2');
-INSERT INTO giangvien VALUES('G1401054','Tran', 'Van D','3/2,Q.Cái Răng, TP Can Tho','tvd@gmail.com','09xxxxxx','DI14V7A2');
+INSERT INTO giangvien VALUES('G1401051','Tran', 'Van A','3/2,Q.Cai Răng, TP Can Tho','tva@gmail.com','09xxxxxx','DI14V7A2');
+INSERT INTO giangvien VALUES('G1401052','Tran', 'Van B','3/2,Q.Cai Răng, TP Can Tho','tvb@gmail.com','09xxxxxx','DI14V7A2');
+INSERT INTO giangvien VALUES('G1401053','Tran', 'Van C','3/2,Q.Cai Răng, TP Can Tho','tvc@gmail.com','09xxxxxx','DI14V7A2');
+INSERT INTO giangvien VALUES('G1401054','Tran', 'Van D','3/2,Q.Cai Răng, TP Can Tho','tvd@gmail.com','09xxxxxx','DI14V7A2');

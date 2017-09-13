@@ -10,32 +10,32 @@
     include 'connection.php';
     include 'session.php';
     include 'header.php';
-    include 'class.student.php';
-    $student = new student();
-    $sql = "SELECT * FROM sinhvien";
+    include 'class.teacher.php';
+    $teacher = new teacher();
+    $sql = "SELECT * FROM giangvien";
     if (isset($_POST['search'])) {
       $keyword = $_POST['keyword'];
-      $check = $student->check_student($con,$keyword);
+      $check = $teacher->check_teacher($con,$keyword);
       if ($check == TRUE) {
-        $sql = "SELECT * FROM sinhvien WHERE Ma_SV='$keyword'";
+        $sql = "SELECT * FROM giangvien WHERE Ma_GV='$keyword'";
       }
       else {
         echo "<script>
-            alert('Mã sinh viên không tồn tại!');
+            alert('Mã giảng viên không tồn tại!');
             window.location.href='{$_SERVER['PHP_SELF']}';
         </script>";
       }
     }
-    $result = $student->get_all_student($con,$sql);
+    $result = $teacher->get_all_teacher($con,$sql);
      ?>
      <div class="main">
        <div class="section">
          <div class="section-header">
-           <div id="title"><h2 id="title">Quản lý sinh viên</h2></div>
-           <div id="button"><a href="create_student.php">Tạo sinh viên mới</a></div>
+           <div id="title"><h2 id="title">Quản lý giảng viên</h2></div>
+           <div id="button"><a href="create_student.php">Tạo giảng viên mới</a></div>
            <p id="search">
              <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" class="form">
-               Tìm theo mã sinh viên: <input type="text" name="keyword"/>
+               Tìm theo mã giảng viên: <input type="text" name="keyword"/>
                <input type="submit" name="search" value="Tìm">
              </form>
            </p>
@@ -43,7 +43,7 @@
          <div class="section-table">
            <table border=1>
              <tr>
-               <th>Mã sinh viên</th>
+               <th>Mã giảng viên</th>
                <th>Họ</th>
                <th>Tên</th>
                <th>Địa chỉ</th>
@@ -55,16 +55,16 @@
              <?php
              while ($row = mysqli_fetch_assoc($result)) {
                echo "<tr>";
-                 echo "<td>{$row['Ma_SV']}</td>";
+                 echo "<td>{$row['Ma_GV']}</td>";
                  echo "<td>{$row['Ho']}</td>";
                  echo "<td>{$row['Ten']}</td>";
                  echo "<td>{$row['Dia_Chi']}</td>";
                  echo "<td>{$row['Email']}</td>";
                  echo "<td>{$row['Sdt']}</td>";
                  echo "<td>{$row['Ma_Nganh']}</td>";
-                 echo '<td><a id="info" href="view_user.php?id=' . $row['Ma_SV'] . '">Xem chi tiết</a></td>';
-                 echo '<td><a id="edit" href="edit.php?id=' . $row['Ma_SV'] . '">Sửa</a></td>';
-                 echo "<td><a id='delete' href='delete_student.php?id={$row["Ma_SV"]}' onclick='return confirm(\"Bạn có chắc xóa sinh viên cùng với tài khoản đăng nhập! \")'>Xóa</a></td>";
+                 echo '<td><a id="info" href="view_user.php?id=' . $row['Ma_GV'] . '">Xem chi tiết</a></td>';
+                 echo '<td><a id="edit" href="edit.php?id=' . $row['Ma_GV'] . '">Sửa</a></td>';
+                 echo "<td><a id='delete' href='delete_student.php?id={$row["Ma_GV"]}' onclick='return confirm(\"Bạn có chắc xóa giảng viên cùng với tài khoản đăng nhập! \")'>Xóa</a></td>";
                echo "</tr>";
              }
              mysqli_close($con);

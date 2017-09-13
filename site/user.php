@@ -9,7 +9,7 @@
   <body>
     <?php
       include 'header.php';
-      include 'session.php'; 
+      include 'session.php';
     ?>
     <!--Day la phan content -->
     <div class="main">

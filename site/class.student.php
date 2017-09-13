@@ -37,11 +37,11 @@ class student {
     }
   }
 
-  //Hàm update thông tin sinh viên với mã sinh viên, và mã ngành
-  public function update_student($con,$ma_sv,$ho,$ten,$dia_chi,$email,$sdt,$ma_nganh) {
+  //Hàm kiểm tra update thông tin sinh viên với mã sinh viên, và mã ngành
+  public function check_update_student($con,$ma_sv,$ho,$ten,$dia_chi,$email,$sdt) {
     $sql = "UPDATE sinhvien
             SET Ho='$ho', Ten='$ten', Dia_Chi='$dia_chi',Email='$email', sdt='$sdt'
-            WHERE Ma_SV='$ma_sv' AND Ma_Nganh='$ma_nganh'";
+            WHERE Ma_SV='$ma_sv'";
     $result = mysqli_query($con,$sql);
     if ($result) {
       return TRUE;
@@ -49,6 +49,14 @@ class student {
     else {
       return FALSE;
     }
+  }
+
+  //Hàm update sinh viên
+  public function update_student($con,$ma_sv,$ho,$ten,$dia_chi,$email,$sdt) {
+    $sql = "UPDATE sinhvien
+            SET Ho='$ho', Ten='$ten', Dia_Chi='$dia_chi',Email='$email', sdt='$sdt'
+            WHERE Ma_SV='$ma_sv'";
+    return $sql;
   }
 
   //Hàm xóa một sinh viên (đồng thời xóa lun tài khoản đăng nhập)

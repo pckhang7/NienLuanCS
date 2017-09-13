@@ -14,7 +14,15 @@
       $password = mysqli_escape_string($con,$password);
       $login = $user->login($con,$username, $password);
       if ($login) {
-        header ("Location: site/admin_index.php");
+        if ($_SESSION['type'] == 'admin') {
+          header ("Location: site/admin_index.php");
+        }
+        if ($_SESSION['type'] == 'student.php') {
+          header ("Location: site/student_index.php");
+        }
+        if ($_SESSION['type'] == 'teacher') {
+          header ("Location: site/teacher_index.php");
+        }
       }
       else {
         $err = "Mã đăng nhập hoăc mật khẩu không hợp lệ!";
