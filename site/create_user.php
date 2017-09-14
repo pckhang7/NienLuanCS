@@ -7,8 +7,8 @@
   </head>
   <body>
     <?php
-    include "header.php";
     include 'session.php';
+    include "header.php";
     include 'connection.php';
     include 'class.user.php';
     $err = '';

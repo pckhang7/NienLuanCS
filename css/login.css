@@ -30,9 +30,8 @@ body {
 }
 
 .main {
-  height: 100%;
-  min-height: auto;
-  position: relative;
+  height: auto;
+  min-height: 100%;
   box-sizing: border-box;
 }
 
@@ -42,7 +41,8 @@ body {
   line-height: 40px;
   text-align: center;
   height: 40px;
-  position: absolute;
+  clear : both;
+  bottom: 0;
 }
 
 /*=====Thiet lap kieu ben trong phan header========*/
@@ -78,15 +78,17 @@ body {
 }
 .sidebar {
   width: 150px;
+  min-width: 15%;
   float: left;
   height: 100%;
   background-color: #005580;
 }
 .section {
   margin: 0;
+  box-sizing: border-box;
   padding: 10px;
-  width: 1000px;
   height: 100%;
+  min-width: 85%;
 }
 /*========Main================*/
 
@@ -212,7 +214,7 @@ body {
 .section-table table td #delete {
   background-color: #d9534f;
 }
-/*====== Tùy chỉnh trang "create_user.php" =======*/
+/*====== TÃ¹y chá»‰nh trang "create_user.php" =======*/
 #error {
   color : red;
 }
@@ -236,7 +238,7 @@ body {
   margin: 10px;
 }
 
-/*=====Tùy chỉnh trang "view_user" =======*/
+/*=====TÃ¹y chá»‰nh trang "view_user" =======*/
 .user-profile{
   width: 800px;
   height: auto;
@@ -261,7 +263,7 @@ body {
   background-color: navy;
   color: white;
 }
-/*=====Tùy chỉnh kiểu trang "edit_user"=========*/
+/*=====TÃ¹y chá»‰nh kiá»ƒu trang "edit_user"=========*/
 .main-edit {
   width: 600px;
   height: auto;
@@ -295,12 +297,12 @@ body {
 .main-edit input[type='submit']:hover {
   background: #4691A4;
 }
-/*====Tạo kiểu cho create-user.php =====*/
+/*====Táº¡o kiá»ƒu cho create-user.php =====*/
 .main .create-user {
-  width: 400px;
+  width: 600px;
   height: auto;
   border: 1px solid black;
-  margin: 50px auto;
+  margin: 20px auto;
   padding: 10px;
 }
 .main .create-user #title {
@@ -347,22 +349,39 @@ body {
 .main #section #label #note #note-title {
   color: red;
 }
-/*===Tùy chỉnh kiểu trang subject.php====*/
+/*===TÃ¹y chá»‰nh kiá»ƒu trang subject.php====*/
+.main .main-title {
+  margin: 10px 1%;
+}
 .main .main-subject {
-  width : 800px;
+  width : 98%;
   height: auto;
   margin : 10px auto;
   min-height: 500px;
+  padding : 10px;
+  border-radius: 4px;
   box-sizing: border-box;
   border:  1px solid black;
 }
 .main-subject #section {
   display: inline-block;
   padding : 5px;
-  border: 1px solid red;
+  border: 1px solid gray;
   margin: 0;
   float: left;
   background-color: blue;
+}
+.main-subject .table table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+}
+.main-subject .table table th {
+  height: 40px;
+  background-color: #6495ED;
+}
+.main-subject .table table td {
+  height: 30px;
 }
 .main-subject #section a {
   text-decoration: none;
@@ -371,7 +390,7 @@ body {
 }
 .main-subject  form {
   clear: both;
-  width: 90%;
+  width: 100%;
   height: 30px;
   line-height: 30px;
   margin: 40px auto;
@@ -388,4 +407,12 @@ body {
   background-color: blue;
   color: white;
   padding : 3px;
+}
+
+/*Tùy chỉnh kiểu tạo nhóm học phần mới*/
+.main .create-subject {
+  width: 800px;
+  border: 1px solid black;
+  margin: 15px auto;
+  height: 500px;
 }
