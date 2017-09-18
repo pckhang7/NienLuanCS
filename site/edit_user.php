@@ -21,35 +21,47 @@
     }
     $err='';
     if (!empty($_POST)) {
-      $password1 = $_POST['password1'];
-      $password2 = $_POST['password2'];
-      if  (empty($password1)) {
+      if  (empty($_POST['password1'])) {
         $err = 'Xin hãy nhập mật khẩu';
       }
-      if (empty($password2)) {
-        $err = 'Xin hãy nhập lại mật khẩu';
-      }
-      $password1 = mysqli_escape_string($con,$_POST['password1']);
-      $password2 = mysqli_escape_string($con,$_POST['password2']);
-      if ($password1 == $password2) {
-        $md5password = md5($password1);
-        $check = $user->update_user($con,$username,$password1,$md5password);
-        if ($check === TRUE) {
-          echo '<script type="text/javascript">
-                alert("Cập nhật tài khoản thành công!");
-                window.location.href="user.php";
-                </script>';
+      else {
+        if(strlen($_POST['password1']) < 6) {
+          $err = 'mật khẩu ít nhất 8 kí tự';
         }
         else {
-          echo "<script type='text/javascript'>
-                alert('Có lỗi trong việc cập nhật tài khoản');
-                window.location.href='user.php';
-                </script>";
+          $password1 = mysqli_escape_string($con,$_POST['password1']);
         }
       }
-      else {
-        $err = "Nhập lại mật khẩu bị sai. Xin nhập lại!";
+      if (empty($_POST['password2'])) {
+        $err = 'Xin hãy nhập lại mật khẩu';
       }
+      else {
+        $password2 = mysqli_escape_string($con,$_POST['password2']);
+      }
+      if ($err == '') {
+        if ($password1 == $password2) {
+          $md5password = md5($password1);
+          $check = $user->update_user($con,$username,$password1,$md5password);
+          if ($check === TRUE) {
+            echo '<script type="text/javascript">
+                  alert("Cập nhật tài khoản thành công!");
+                  window.location.href="user.php";
+                  </script>';
+          }
+          else {
+            echo "<script type='text/javascript'>
+                  alert('Có lỗi trong việc cập nhật tài khoản');
+                  window.location.href='user.php';
+                  </script>";
+          }
+        }
+        else {
+          $err = "Nhập lại mật khẩu bị sai. Xin nhập lại!";
+        }
+      }
+    }
+    if (isset($_POST['cancel'])) {
+      header("Location: user.php");
     }
     mysqli_close($con);
      ?>
@@ -65,7 +77,7 @@
            <label for="password">Nhập lại mật khẩu</label>
            <input type="text" name="password2">
            <input type="submit" name="submit" value="Cập nhật">
-           <input type="button" name="cancle" value="Cancel">
+           <input type="submit" name="cancel" value="Cancel">
          </form>
        </div>
      </div>

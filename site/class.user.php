@@ -121,15 +121,18 @@ class user {
     -Ngược lại nếu là giảng viên : trả về 'giangvien'.
   */
   public function return_table($con,$ma){
-    $sql = "SELECT * FROM sinhvien WHERE Ma_SV = '$ma'";
-    $result = mysqli_query($con, $sql);
-    $count = mysqli_num_rows($result);
+    $sql1 = "SELECT * FROM sinhvien WHERE Ma_SV = '$ma'";
+    $sql2 = "SELECT * FROM giangvien WHERE Ma_GV = '$ma'";
+    $result1 = mysqli_query($con, $sql1);
+    $result2 = mysqli_query($con, $sql2);
+    $count1 = mysqli_num_rows($result1);
+    $count2 = mysqli_num_rows($result2);
     $str1 = "sinhvien";
     $str2 = "giangvien";
-    if ($count > 0) {
+    if ($count1 > 0) {
       return $str1;
     }
-    else {
+    if ($count2 > 0) {
       return $str2;
     }
   }

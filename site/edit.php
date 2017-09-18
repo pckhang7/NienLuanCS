@@ -25,52 +25,81 @@
        $check = $student->check_student($con,$username);
        /*Nếu người dùng submit cập nhật thông tin*/
        if (isset($_POST['submit'])) {
-         $Ho = $_POST['ho'];
-         $Ten = $_POST['ten'];
-         $Dia_Chi = $_POST['dia_chi'];
-         $Email = $_POST['email'];
-         $Sdt = $_POST['sdt'];
-         //Nếu như username này là sinh viên(tức $check == TRUE)
-         if ($check == TRUE) {
-           //Kiểm tra update thành công
-           $check_update = $student->check_update_student($con,$username,$Ho,$Ten,$Dia_Chi,$Email,$Sdt);
-           if ($check_update == TRUE) {
-             $sql = $student->update_student($con,$username,$Ho,$Ten,$Dia_Chi,$Email,$Sdt);
-             if (mysqli_query($con,$sql)) {
-                   echo "<script>
-                      alert('Cập nhật thành công!');
-                      window.location.href='student.php';
-                   </script>";
-             }
-           }
-           else {
-             echo "<script>
-                alert('Có lỗi trong việc cập nhật!');
-                window.location.href={$_SERVER["PHP_SELF"]};
-             </script>";
-           }
+         $error = array();
+         //Kiểm tra các thông tin cập nhật có bị rỗng hay khong
+         if (empty($_POST['ho']) or strlen($_POST['ho']) > 10) {
+           $error[] = 'Họ không được để trống và ít hơn 10 ký tự';
          }
-         //Ngươc lại username là giảng viên (tức là $check==FALSE), cập nhật bảng giảng viên
          else {
-           //Kiểm tra update thành công
-           $check_update = $teacher->check_update_teacher($con,$username,$Ho,$Ten,$Dia_Chi,$Email,$Sdt);
-           if ($check_update == TRUE) {
-             $sql = $teacher->update_teacher($con,$username,$Ho,$Ten,$Dia_Chi,$Email,$Sdt);
-             if (mysqli_query($con,$sql)) {
-                   echo "<script>
-                      alert('Cập nhật thành công!');
-                      window.location.href='teacher.php';
-                   </script>";
-             }
-           }
-           else {
-             echo "<script>
-                alert('Có lỗi trong việc cập nhật!');
-                window.location.href={$_SERVER["PHP_SELF"]};
-             </script>";
-           }
+           $Ho = mysqli_escape_string($con,$_POST['ho']);
          }
-       }
+         if (empty($_POST['ten'])) {
+           $error[] = 'Tên không được để trống';
+         }
+         else {
+           $Ten = mysqli_escape_string($con,$_POST['ten']);
+         }
+         if (empty($_POST['dia_chi'])) {
+           $error[] = 'Địa chỉ không được trống';
+         }
+         else {
+           $Dia_Chi = mysqli_escape_string($con,$_POST['dia_chi']);
+         }
+         if (empty($_POST['email'])) {
+           $error[] = 'Email không được trống';
+         }
+         else {
+           $Email = mysqli_escape_string($con,$_POST['email']);
+         }
+         if (empty($_POST['sdt']) or strlen($_POST['sdt']) != 11) {
+           $error[] = 'Số điện thoại không được trống và phải là 11 số';
+         }
+         else {
+           $Sdt = mysqli_escape_string($con,$_POST['sdt']);
+         }
+         if (empty($error)) {
+           //Nếu như username này là sinh viên(tức $check == TRUE)
+           if ($check == TRUE) {
+               //Kiểm tra update thành công
+               $check_update = $student->check_update_student($con,$username,$Ho,$Ten,$Dia_Chi,$Email,$Sdt);
+               if ($check_update == TRUE) {
+                 $sql = $student->update_student($con,$username,$Ho,$Ten,$Dia_Chi,$Email,$Sdt);
+                 if (mysqli_query($con,$sql)) {
+                       echo "<script>
+                          alert('Cập nhật thành công!');
+                          window.location.href='student.php';
+                       </script>";
+                 }
+               }
+               else {
+                 echo "<script>
+                    alert('Có lỗi trong việc cập nhật!');
+                    window.location.href={$_SERVER["PHP_SELF"]};
+                 </script>";
+               }
+             }
+             //Ngươc lại username là giảng viên (tức là $check==FALSE), cập nhật bảng giảng viên
+             else {
+               //Kiểm tra update thành công
+               $check_update = $teacher->check_update_teacher($con,$username,$Ho,$Ten,$Dia_Chi,$Email,$Sdt);
+               if ($check_update == TRUE) {
+                 $sql = $teacher->update_teacher($con,$username,$Ho,$Ten,$Dia_Chi,$Email,$Sdt);
+                 if (mysqli_query($con,$sql)) {
+                       echo "<script>
+                          alert('Cập nhật thành công!');
+                          window.location.href='teacher.php';
+                       </script>";
+                 }
+               }
+               else {
+                 echo "<script>
+                    alert('Có lỗi trong việc cập nhật!');
+                    window.location.href={$_SERVER["PHP_SELF"]};
+                 </script>";
+               }
+             }
+         }
+       }//Đóng submit
        if (isset($_POST['cancel'])) {
          if ($check == TRUE) {
            echo "<script>
@@ -98,6 +127,16 @@
      <div class="main">
        <div class="main-edit">
          <form method="post" action="<?php $_SERVER['PHP_SELF'] ?>">
+           <label for="error">
+             <div id="error">
+               <?php
+                if (!empty($error)) {
+                  $err = current($error);
+                  echo $err;
+                }
+               ?>
+             </div>
+           </label>
            <label for="username"><?php echo $str; ?></label>
            <input type="text" name="ma_sv" value="<?php echo $username ?>" disabled>
            <label for="ho">Họ</label>

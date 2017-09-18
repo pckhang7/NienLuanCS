@@ -11,7 +11,7 @@
     header ("Location: subject.php");
   }
   $sql = $subject->delete_subject($con,$id);
-  if (mysqli_query($con,$sql)) {
+  if (mysqli_query($con,$sql) == TRUE) {
     echo "<script>
             alert('Bạn đã xóa thành công!');
             window.location.href='subject.php';

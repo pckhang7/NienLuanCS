@@ -47,15 +47,24 @@
         <div class="search">
           <form class="" action="<?php $_SERVER['PHP_SELF'] ?>" method="post">
             <select name="hocki" id="hk">
-              <option value="hk1" <?php if($hk == "hk1") echo 'selected';?>>Học kì 1</option>
-              <option value="hk2" <?php if($hk == "hk2") echo 'selected';?>>Học kì 2</option>
-              <option value="hk3" <?php if($hk == "hk3") echo 'selected';?>>Học kì 3</option>
+              <?php
+                 //Truy vấn tất cả học kì
+                 $result = mysqli_query($con,"SELECT * FROM hocki");
+                 while ($row = mysqli_fetch_assoc($result)) {
+                   if ($row['Ma_HK'] == $hk) $selected = "selected";
+                   echo '<option value="' . $row['Ma_HK'] . '"' . $selected . '>' . $row['Ten_HK'] . '</option>';
+                 }
+               ?>
             </select>
             <select name="namhoc" id="nh">
-              <option value="2014" <?php if($nh == "2014") echo 'selected';?>>2014-2015</option>
-              <option value="2015" <?php if($nh == "2015") echo 'selected';?>>2015-2016</option>
-              <option value="2016" <?php if($nh == "2016") echo 'selected';?>>2016-2017</option>
-              <option value="2017" <?php if($nh == "2017") echo 'selected';?>>2017-2018</option>
+              <?php
+              //Hiển thị năm học 
+                $result = mysqli_query($con,"SELECT * FROM namhoc");
+                while ($row = mysqli_fetch_assoc($result)) {
+                  if ($row['Ma_NH'] == $nh) $selected = "selected";
+                  echo '<option value="' . $row['Ma_NH'] . '"' . $selected . '>' . $row['Ten_NH'] . '</option>';
+                }
+               ?>
             </select>
             <input type="submit" name="submit" value="Thực hiện">
             <input type="submit" name="all" value="Xem tất cả">

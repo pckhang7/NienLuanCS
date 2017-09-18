@@ -414,5 +414,29 @@ body {
   width: 800px;
   border: 1px solid black;
   margin: 15px auto;
-  height: 500px;
+  height: auto;
+  min-height: 500px;
+  box-sizing: border-box;
+}
+.create-subject #title, .create-subject #hr , .create-subject form {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 10px;
+}
+.create-subject #title {
+  background-color: gray;
+  color : white;
+}
+.create-subject form #input {
+  display: block;
+  margin: 20px 0;
+  height: 30px;
+  line-height: 30px;
+  width: 100%;
+}
+.create-subject form #input input, .create-subject form #input label {
+  height: 100%;
+  display: inline-block;
+  width: 40%;
 }
