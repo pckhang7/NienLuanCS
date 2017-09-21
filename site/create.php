@@ -143,7 +143,7 @@
            </div>
            <div id="section">
              <div id="label"><label>Tên :</label></div>
-             <input type="text" name="ten" placeholder="Tên">
+             <input type="text" name="ten" placeholder="Tên"/>
            </div>
            <div id="section">
              <div id="label"><label>Địa chỉ :</label></div>

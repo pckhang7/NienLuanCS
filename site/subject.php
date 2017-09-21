@@ -16,13 +16,14 @@
       include 'class.subject.php';
       $subject = new subject();
       //Mặc định hiển thị học kì và năm học trong phần option
-      $hk = (isset($_POST['hocki'])) ? $_POST['hocki'] : "hk1";
-      $nh = (isset($_POST['namhoc'])) ? $_POST['namhoc'] : "2014-2015";
+      $hk = (isset($_POST['hocki'])) ? ($_POST['hocki']) : "hk1";
+      $nh = (isset($_POST['namhoc'])) ? ($_POST['namhoc']) : "2017";;
       $sql = $subject->get_all_subject($hk,$nh);
       //Nếu submit form , hiển thì học phần tại học kì năm học hiện tại
       if (isset($_POST['submit'])) {
         $sql = $subject->get_all_subject($hk,$nh);
       }
+      //truy van tat ca nhung mon hoc 
       if (isset($_POST['all'])) {
         $sql = $subject->get_all();
       }
@@ -51,18 +52,18 @@
                  //Truy vấn tất cả học kì
                  $result = mysqli_query($con,"SELECT * FROM hocki");
                  while ($row = mysqli_fetch_assoc($result)) {
-                   if ($row['Ma_HK'] == $hk) $selected = "selected";
-                   echo '<option value="' . $row['Ma_HK'] . '"' . $selected . '>' . $row['Ten_HK'] . '</option>';
+                   if ($row['Ma_HK'] === $hk) $selected1 = ' selected="selected"';
+                   echo '<option value="' . $row['Ma_HK'] . '"' . $selected1 . '>' . $row['Ten_HK'] . '</option>';
                  }
                ?>
             </select>
             <select name="namhoc" id="nh">
               <?php
-              //Hiển thị năm học 
+              //Hiển thị năm học
                 $result = mysqli_query($con,"SELECT * FROM namhoc");
                 while ($row = mysqli_fetch_assoc($result)) {
-                  if ($row['Ma_NH'] == $nh) $selected = "selected";
-                  echo '<option value="' . $row['Ma_NH'] . '"' . $selected . '>' . $row['Ten_NH'] . '</option>';
+                  if ($row['Ma_NH'] === $nh) $selected2 = ' selected="selected"';
+                  echo '<option value="' . $row['Ma_NH'] . '"' . $selected2 . '>' . $row['Ten_NH'] . '</option>';
                 }
                ?>
             </select>
