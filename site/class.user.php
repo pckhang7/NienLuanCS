@@ -136,6 +136,20 @@ class user {
       return $str2;
     }
   }
+
+  //Hàm lấy tổng số hàng
+  public function select_all($con,$sql) {
+    $result = mysqli_query($con,$sql);
+    $num_rows = mysqli_fetch_row($result);
+    return $num_rows[0];
+  }
+
+  //Hàm truy vấn giới hạn
+  public function readAll($con,$from,$rows_per_page) {
+    $sql = "SELECT * FROM user LIMIT $from , $rows_per_page";
+    $result = mysqli_query($con,$sql);
+    return $result;
+  }
 }
 
  ?>

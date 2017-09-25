@@ -23,9 +23,11 @@
       if (isset($_POST['submit'])) {
         $sql = $subject->get_all_subject($hk,$nh);
       }
-      //truy van tat ca nhung mon hoc 
+      //truy van tat ca nhung mon hoc
       if (isset($_POST['all'])) {
         $sql = $subject->get_all();
+        $hk = "hk1";
+        $nh = "2017";
       }
      ?>
     <div class="main">
@@ -40,9 +42,6 @@
           <div id="section">
             <a href="create_subject.php">Thêm nhóm học phần </a>
           </div>
-          <div id="section">
-            <a href="#">Cập nhật sinh viên học phần</a>
-          </div>
         </div>
 
         <div class="search">
@@ -52,7 +51,10 @@
                  //Truy vấn tất cả học kì
                  $result = mysqli_query($con,"SELECT * FROM hocki");
                  while ($row = mysqli_fetch_assoc($result)) {
-                   if ($row['Ma_HK'] === $hk) $selected1 = ' selected="selected"';
+                   if ($row['Ma_HK'] == $hk) $selected1 = ' selected="selected"';
+                   else {
+                     $selected1 = "";
+                   }
                    echo '<option value="' . $row['Ma_HK'] . '"' . $selected1 . '>' . $row['Ten_HK'] . '</option>';
                  }
                ?>
@@ -62,7 +64,10 @@
               //Hiển thị năm học
                 $result = mysqli_query($con,"SELECT * FROM namhoc");
                 while ($row = mysqli_fetch_assoc($result)) {
-                  if ($row['Ma_NH'] === $nh) $selected2 = ' selected="selected"';
+                  if ($row['Ma_NH'] == $nh) $selected2 = ' selected="selected"';
+                  else {
+                    $selected2 = "";
+                  }
                   echo '<option value="' . $row['Ma_NH'] . '"' . $selected2 . '>' . $row['Ten_NH'] . '</option>';
                 }
                ?>
@@ -85,7 +90,7 @@
               <th>Học kì</th>
               <th>Năm học</th>
               <th>Mã giảng viên</th>
-              <th colspan="2">Thao tác</th>
+              <th colspan="3">Thao tác</th>
             </tr>
             <?php
             while ($row = mysqli_fetch_assoc($result)) {
@@ -99,6 +104,7 @@
                 echo "<td>{$row['Ten_NH']}</td>";
                 echo "<td>{$row['Ma_GV']}</td>";
                 echo "<td><a href='edit_subject.php?id={$row["Id"]}'>Sửa</a></td>";
+                echo "<td><a href='add_student_subject.php?id={$row["Id"]}'>Thêm sinh viên</a></td>";
                 echo "<td><a href='delete_subject.php?id={$row["Id"]}' onclick='return confirm(\"Bạn có chắc nhóm học phần ! \")'>Xóa</a></td>";
               echo "</tr>";
             }

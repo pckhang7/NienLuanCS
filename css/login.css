@@ -187,6 +187,21 @@ body {
   color: white;
   padding : 3px 10px;
 }
+.section-table ul li {
+  display: inline-block;
+  margin : 10px 0;
+  liss-style-type : none;
+}
+.section-table ul li a {
+  text-decoration: none;
+  border: 1px solid;
+  padding: 4px;
+  text-color : blue;
+}
+.section-table ul li a:active {
+  text-color : blue;
+}
+
 .section-table table {
   border-collapse: collapse;
   padding : 10px;

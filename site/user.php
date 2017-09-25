@@ -44,8 +44,14 @@
               </script>";
             }
           }
-          $result = $user->get_all_user($con,$sql);
+          //Thiết lập pagination
+          $page_url = "user.php";
+          $total_rows = $user->select_all($con,"SELECT COUNT(*) FROM user;");
+          include 'paging.php';
+          $result = $user->readAll($con,$from_num_row,$rows_per_page);
+          mysqli_close($con);
           ?>
+          <!--$result = $user->get_all_user($con,$sql);-->
           <table border="1">
             <tr>
               <th>Số thứ tự</th>
@@ -68,12 +74,11 @@
               echo "<td><a id='delete' href='delete_user.php?id={$row["username"]}' onclick='return confirm(\"Ban co chac xoa \")'>Xóa</a></td>";
             echo "</tr>";
           }
-
-          mysqli_close($con);
-           ?>
+          ?>
          </table>
         </div>
       </div>
+
     </div>
     <?php include 'footer.php'; ?>
   </body>

@@ -41,7 +41,7 @@
                 $ma_nh = $_POST['nh'];
             }
 
-            //Nếu như không có lỗi  
+            //Nếu như không có lỗi
             if (empty($error)) {
               //Nếu người dùng nhất nhút tạo
               if (isset($_POST["create"])) {
@@ -63,11 +63,28 @@
                       }
                     }
                   }
+                  /*Nếu nhóm học phần tồn tại, xét 2 trường hợp:
+                    +TH1 : nhóm học phần đã có giảng viên giảng dạy
+                    +TH2 : nhóm hp chưa có giảng viên giảng dạy thì thêm học phần vào
+                  */
                   else {
-                    echo "<script>
-                            alert('Nhóm học phần đã tồn tại');
-                            window.location.href='create_subject.php';
-                      </script>";
+                    $check_subject_teacher = $subject->check_subject_teacher($con,$ma_nhom, $ma_hp, $ma_hk, $ma_nh);
+                    //Nếu như ko tồn tại
+                    if ($check_subject_teacher == FALSE) {
+                      $sql2 = $subject->insert_subject_teacher($con,$ma_nhom,$ma_hp,$ma_hk,$ma_nh,$ma_gv);
+                      if (mysqli_query($con,$sql2)) {
+                        echo "<script>
+                                alert('Tạo nhóm học phần thành công');
+                                window.location.href='subject.php';
+                             </script>";
+                      }
+                    }
+                    else {
+                      echo "<script>
+                              alert('Nhóm học phần đã tồn tại');
+                              window.location.href='create_subject.php';
+                        </script>";
+                    }
                   }
                   //Ngược lại nhóm học phần không tồn tại
                 }
@@ -75,7 +92,7 @@
                 else {
                   $error[] = 'Mã học phần không tồn tại';
                 }
-              } 
+              }
             }
           }
 
@@ -83,7 +100,7 @@
 
           if (isset($_POST["cancel"]) ) {
             header("Location: subject.php");
-          } 
+          }
       ?>
      <!-- main -->
      <div class="main">
@@ -95,7 +112,7 @@
            <hr>
          </div>
          <div id="error">
-           <?php 
+           <?php
             if (!empty($error)) {
                   $err = current($error);
                   echo $err;

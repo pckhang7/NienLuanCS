@@ -47,7 +47,7 @@
       }
     }
 
-    //hàm insert vào nhóm học phần 
+    //hàm insert vào nhóm học phần
     public function insert_group_subject($con,$ma_nhom,$ma_hp,$ma_hk,$ma_nh) {
       $sql = "INSERT INTO nhom_hp (Ma_Nhom,Ma_HP,Ma_HK,Ma_NH)
               VALUES ('$ma_nhom','$ma_hp','$ma_hk','$ma_nh')";
@@ -60,13 +60,22 @@
               VALUES ('$ma_nhom','$ma_hp','$ma_hk','$ma_nh','$ma_gv')";
       return $sql;
     }
+
+    //Hàm update nhóm học phần và giảng viên
+    public function update_subject($con,$id,$ma_nhom,$ma_gv) {
+      $sql = "UPDATE giangvien_hp
+              SET Ma_Nhom = '$ma_nhom' , Ma_GV = '$ma_gv'
+              WHERE Id=$id";
+      return $sql;
+    }
+
     /*Hàm kiểm tra xem nhóm học phần đã tồn tại hay chưa
-      +TRUE : đã tồn tại 
+      +TRUE : đã tồn tại
       +FALSE : chưa tồn tại
     */
     public function check_group_subject($con,$ma_nhom, $ma_hp, $ma_hk, $ma_nh) {
-      $sql = "SELECT * FROM nhom_hp 
-              WHERE Ma_Nhom = '$ma_nhom' AND Ma_HP = '$ma_hp' 
+      $sql = "SELECT * FROM nhom_hp
+              WHERE Ma_Nhom = '$ma_nhom' AND Ma_HP = '$ma_hp'
                     AND Ma_HK = '$ma_hk' AND Ma_NH = '$ma_nh'
         ";
       $result = mysqli_query($con,$sql);
@@ -79,7 +88,7 @@
       }
     }
 
-    
+
 
 
     /*Hàm kiểm tra xem mã học phần đã tồn tại trong bảng học phần hay không
@@ -93,10 +102,74 @@
       $count = mysqli_num_rows($result);
       if ($count > 0) {
         return TRUE;
-      } 
+      }
       else {
         return FALSE;
       }
+    }
+
+    //Ham lay ma giang vien giang day trong bang giang vien hoc phan
+    public function get_teacher($con,$query) {
+      $result = mysqli_query($con,$query);
+      while ($row = mysqli_fetch_field($result)) {
+        return $row['Ma_GV'];
+      }
+    }
+
+    //Hàm lấy tên học kì từ bảng
+    public function get_term($con,$query) {
+      $result = mysqli_query($con,$query);
+      while ($row = mysqli_fetch_assoc($result)) {
+        return $row['Ten_HK'];
+      }
+    }
+
+    //Hàm lấy tên năm học từ bảng
+    public function get_year($con,$query) {
+      $result = mysqli_query($con,$query);
+      while ($row = mysqli_fetch_assoc($result)) {
+        return $row['Ten_NH'];
+      }
+    }
+
+    /*Hàm kiểm tra nhóm học phần có giảng viên giảng dạy hay không
+    +TRUE : tồn tại
+    +FALSE : ko tồn tại*/
+    public function check_subject_teacher($con,$ma_nhom, $ma_hp, $ma_hk, $ma_nh) {
+      $sql = "SELECT * FROM giangvien_hp
+              WHERE Ma_Nhom = '$ma_nhom' AND Ma_HP = '$ma_hp' AND Ma_HK = '$ma_hk'
+                    AND Ma_NH = '$ma_nh'";
+      $result = mysqli_query($con,$sql);
+      $count = mysqli_num_rows($result);
+      if ($count > 0) {
+        return TRUE;
+      }
+      else {
+        return FALSE;
+      }
+    }
+
+    //Hàm lấy một nhóm học phần được giảng dạy theo mã thứ tự
+    public function select_one($con,$id) {
+      $sql = "SELECT * FROM giangvien_hp as gv_hp, hocki as hk, namhoc as nh, hocphan as hp
+              WHERE Id = '$id' AND gv_hp.Ma_HP = hp.Ma_HP AND gv_hp.Ma_HK = hk.Ma_HK
+                    AND gv_hp.Ma_NH = nh.Ma_NH";
+      return $sql;
+    }
+
+    //Hàm Thêm sinh viên vào nhóm học phần
+    public function add_student_subject($con,$id,$ma_sv) {
+      $sql = "SELECT * FROM giangvien_hp WHERE Id= '$id' LIMIT 1";
+      $result = mysqli_query($con,$sql);
+      while($row = mysqli_fetch_assoc($result)) {
+        $ma_nhom = $row['Ma_Nhom'];
+        $ma_hp = $row['Ma_HP'];
+        $ma_hk = $row['Ma_HK'];
+        $ma_nh = $row['Ma_NH'];
+      }
+      $sql = "INSERT INTO sinhvien_hp (Ma_SV,Ma_Nhom,Ma_HP,Ma_HK,Ma_NH)
+              VALUES ('$ma_sv','$ma_nhom','$ma_hp','$ma_hk','$ma_nh')";
+      return $sql;
     }
   }
  ?>
