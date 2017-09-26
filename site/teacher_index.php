@@ -1,5 +1,8 @@
 <?php
   session_start();
+  include 'connection.php';
+  include 'class.subject.php';
+  include 'class.user.php';
   ?>
 <!DOCTYPE html>
 <html>
@@ -11,6 +14,14 @@
   </head>
   <body>
     <?php include 'header.php'; ?>
+    <?php
+      /*Mã giảng viên chính là $_SESSION['username'] */
+      $ma_gv = $_SESSION['username'];
+      $subject = new subject();
+      //Lấy tất cả học phần của giảng viên
+      $sql = $subject->get_all_subject_teacher($ma_gv);
+      $result = mysqli_query($con,$sql);
+     ?>
     <!--Day la phan content -->
     <div class="main">
       <div class="container">
@@ -21,17 +32,58 @@
           <hr>
         </div>
         <div id="section">
+          <div id="section-content">
+            <div id="img">
+              <img src="../img/icon/profile.png" alt="">
+            </div>
+            <div id="text">
+              <a href="view_user.php?id=<?php echo $_SESSION['username'] ?>">Xem thông tin</a>
+            </div>
+          </div>
+          <div id="section-content">
+            <div id="img">
+              <img src="../img/icon/list.png" alt="">
+            </div>
+            <div id="text">
+              <a href="view_subject.php?id=<?php echo $_SESSION['username'] ?>">Xem danh sách nhóm học phần</a>
+            </div>
+          </div>
+          <div id="section-content">
+            <div id="img">
+              <img src="../img/icon/edit.png" alt="">
+            </div>
+            <div id="text">
+              <a href="#">Cập nhật điểm sinh viên</a>
+            </div>
+          </div>
         </div>
-        
-        <div id="content">
-        </div>
-        <div id="content">
-        </div>
-        <div id="content">
-        </div>
-        <div id="content">
-        </div>
-        <div id="content">
+        <div id="section">
+          <p><h4>::Danh sách nhóm học phần giảng dạy::</h4></p><br>
+          <?php
+            while($row = mysqli_fetch_assoc($result)) {
+           ?>
+          <div class="table">
+            <table border="1">
+              <tr>
+                <th>Mã nhóm</th>
+                <th>Mã học phần</th>
+                <th>Học kì</th>
+                <th>Năm học</th>
+              </tr>
+              <?php
+              echo "<tr>";
+                   echo "<td>{$row['Ma_Nhom']}</td>";
+                   echo "<td>{$row['Ma_HP']}</td>";
+                   echo "<td>{$row['Ten_HK']}</td>";
+                   echo "<td>{$row['Ten_NH']}</td>";
+              echo "</tr>";
+               ?>
+            </table>
+          </div>
+          <?php
+            }
+            mysqli_close($con);
+           ?>
         </div>
       </div>
     </div>

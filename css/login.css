@@ -565,16 +565,62 @@ body {
   width: 98%;
   margin: 10px auto;
   height: auto;
+  background-color: rgba(245, 251, 251, 0.59);
   border : 1px solid;
 }
 
-.container #hr , .container #title,.container #section {
+.container #hr , .container #title{
   width: 98%;
   margin: 10px auto;
 }
 
 .container #section {
+  width : 1006px;
+  margin: 0 auto;
+}
+.container #section {
+  height: 200px;
+  box-sizing: border-box;
+}
+.container #section-content {
+  width: 200px;
+  height: 150px;
+  border: 1px solid #051d63;
+  text-align: center;
+  float: left;
+  margin-right: 200px;
+}
+.container #section-content:last-child {
+  margin-right: 0;
+}
+.container #section-content img {
+  width: 100px;
   height: 100px;
-  border: 1px solid;
-  margin-bottom: 10px;
+}
+.container #section-content #text a {
+  text-decoration: none;
+  color: gray;
+  font-weight: bold;
+}
+
+.container #section-content:hover {
+  border: 1px solid blue;
+}
+.container #section-content #text a:hover {
+  color: #3ac3b3;
+}
+.container #section .table {
+  width: 100%;
+}
+
+.container #section .table table {
+  border-collapse: collapse;
+  margin: 0 auto;
+  height: auto;
+  width: 100%;
+  text-align: center;
+}
+
+.container #section .table table th {
+  background-color: #88d5e9;
 }

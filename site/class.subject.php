@@ -10,6 +10,15 @@
       return $sql;
     }
 
+    //Hàm lấy tất cả nhóm học phần của giảng viên nào đó
+    public function get_all_subject_teacher($ma_gv) {
+      $sql = "SELECT *
+              FROM giangvien_hp AS gv_hp, hocphan AS hp, hocki AS hk , namhoc AS nh
+              WHERE gv_hp.Ma_HK = hk.Ma_HK AND gv_hp.Ma_NH = nh.Ma_NH AND
+              gv_hp.Ma_HP = hp.Ma_HP AND gv_hp.Ma_GV = '$ma_gv'";
+      return $sql;
+    }
+
     //Hàm trả lại tất cả truy vấn các nhóm học phần hiện có trong học kì năm học nào đó
     public function get_all_subject($hk,$nh) {
       $sql = "SELECT *
