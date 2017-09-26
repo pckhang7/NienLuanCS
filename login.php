@@ -17,10 +17,10 @@
         if ($_SESSION['type'] == 'admin') {
           header ("Location: site/admin_index.php");
         }
-        if ($_SESSION['type'] == 'student.php') {
+        if ($_SESSION['type'] == 'sinhvien') {
           header ("Location: site/student_index.php");
         }
-        if ($_SESSION['type'] == 'teacher') {
+        if ($_SESSION['type'] == 'giangvien') {
           header ("Location: site/teacher_index.php");
         }
       }

@@ -51,58 +51,59 @@
           <h2>Thêm sinh viên vào nhóm học phần</h2>
         </div>
         <form class="" action="<?php $_SERVER['PHP_SELF'] ?>" method="post">
-          <div class="section-left">
-            <div id="section">
-              <label for="ma_hp">Mã nhóm </label>
-              <div id="text">
-                <?php echo $row['Ma_Nhom'] ?>
+          <div id="section">
+            <div class="section-left">
+              <div id="section-content">
+                <label for="ma_hp">Mã nhóm </label>
+                <div id="text">
+                  <?php echo $row['Ma_Nhom'] ?>
+                </div>
+              </div>
+              <div id="section-content">
+                <label for="ma_hp">Mã học phần</label>
+                <div id="text">
+                  <?php echo $row['Ma_HP'] ?>
+                </div>
+              </div>
+              <div id="section-content">
+                <label for="ten_hp">Tên học phần</label>
+                <div id="text">
+                  <?php echo $row['Ten_HP'] ?>
+                </div>
+              </div>
+              <div id="section-content">
+                <label for="so_tc">Số tín chỉ</label>
+                <div id="text">
+                  <?php echo $row['So_TC'] ?>
+                </div>
               </div>
             </div>
-            <div id="section">
-              <label for="ma_hp">Mã học phần</label>
-              <div id="text">
-                <?php echo $row['Ma_HP'] ?>
+
+            <div class="section-right">
+              <div id="section-content">
+                <label for="ma_hk">Học kì</label>
+                <div id="text">
+                  <?php echo $row['Ten_HK'] ?>
+                </div>
               </div>
-            </div>
-            <div id="section">
-              <label for="ten_hp">Tên học phần</label>
-              <div id="text">
-                <?php echo $row['Ten_HP'] ?>
+              <div id="section-content">
+                <label for="ma_nh">Mã học phần</label>
+                <div id="text">
+                  <?php echo $row['Ten_NH'] ?>
+                </div>
               </div>
-            </div>
-            <div id="section">
-              <label for="so_tc">Số tín chỉ</label>
-              <div id="text">
-                <?php echo $row['So_TC'] ?>
+              <div id="section-content">
+                <label for="ma_gv">Mã giảng viên</label>
+                <div id="text">
+                  <?php echo $row['Ma_GV'] ?>
+                </div>
               </div>
             </div>
           </div>
 
-          <div class="section-right">
-            <div id="section">
-              <label for="ma_hk">Học kì</label>
-              <div id="text">
-                <?php echo $row['Ten_HK'] ?>
-              </div>
-            </div>
-            <div id="section">
-              <label for="ma_nh">Mã học phần</label>
-              <div id="text">
-                <?php echo $row['Ten_NH'] ?>
-              </div>
-            </div>
-            <div id="section">
-              <label for="ma_gv">Mã giảng viên</label>
-              <div id="text">
-                <?php echo $row['Ma_GV'] ?>
-              </div>
-            </div>
-          </div>
           <div id="section">
             <label for="ma_hp">Mã sinh viên</label>
-            <div id="text">
-              <input type="text" name="ma_sv" placeholder="">
-            </div>
+            <input type="text" name="ma_sv" placeholder="">
           </div>
           <input type="submit" name="add" value="Thêm">
         </form>

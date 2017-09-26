@@ -1,29 +1,40 @@
 <?php
-//ket noi db
-include 'connect.php';
-
-//Neu nguoi dung da dang nhap bang 'admin'
-if (isset($_SESSION['type']) == 'teacher') {
-  $sql = "SELECT * FROM user WHERE id = '{$_SESSION['userid']}' and type = 'teacher'";
-  $query = mysqli_query($con, $sql);
-  $result = mysqli_fetch_array($query);
-  $num = mysqli_num_rows($result);
-
-  if ($num == 1) {
-    ?>
-  <html>
-    <body>
-      <h1>Teacher</h1>
-      <a href="logout.php">Logout</a>
-<?php
-    }
-    else {
-      header ("Location: login.php" );
-    }
-  }
-  else {
-    header("Location: login.php");
-  }
-?>
-    </body>
-  </html
+  session_start();
+  ?>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Trang Admin</title>
+    <link rel="stylesheet" href="../css/login.css">
+    <link rel="stylesheet" href="../css/sidebar.css">
+  </head>
+  <body>
+    <?php include 'header.php'; ?>
+    <!--Day la phan content -->
+    <div class="main">
+      <div class="container">
+        <div id="title">
+          <h2>Quản lý học phần giảng dạy</h2>
+        </div>
+        <div id="hr">
+          <hr>
+        </div>
+        <div id="section">
+        </div>
+        
+        <div id="content">
+        </div>
+        <div id="content">
+        </div>
+        <div id="content">
+        </div>
+        <div id="content">
+        </div>
+        <div id="content">
+        </div>
+      </div>
+    </div>
+    <?php include 'footer.php'; ?>
+  </body>
+</html>

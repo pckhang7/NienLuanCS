@@ -4,10 +4,10 @@
     if ($_SESSION['type'] == 'admin'){
       $homepage = 'admin_index.php';
     }
-    if ($_SESSION['type'] == 'student'){
+    if ($_SESSION['type'] == 'sinhvien'){
       $homepage = 'student_index.php';
     }
-    if ($_SESSION['type'] == 'teacher'){
+    if ($_SESSION['type'] == 'giangvien'){
       $homepage = 'teacher_index.php';
     }
   }

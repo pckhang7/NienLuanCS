@@ -30,8 +30,8 @@ body {
 }
 
 .main {
+  min-height: 90%;
   height: auto;
-  min-height: 100%;
   box-sizing: border-box;
 }
 
@@ -43,6 +43,7 @@ body {
   height: 40px;
   clear : both;
   bottom: 0;
+  position: relative;
 }
 
 /*=====Thiet lap kieu ben trong phan header========*/
@@ -229,7 +230,7 @@ body {
 .section-table table td #delete {
   background-color: #d9534f;
 }
-/*====== TÃ¹y chá»‰nh trang "create_user.php" =======*/
+/*====== TÃƒÆ’Ã‚Â¹y chÃƒÂ¡Ã‚Â»Ã¢â‚¬Â°nh trang "create_user.php" =======*/
 #error {
   color : red;
 }
@@ -253,7 +254,7 @@ body {
   margin: 10px;
 }
 
-/*=====TÃ¹y chá»‰nh trang "view_user" =======*/
+/*=====TÃƒÆ’Ã‚Â¹y chÃƒÂ¡Ã‚Â»Ã¢â‚¬Â°nh trang "view_user" =======*/
 .user-profile{
   width: 800px;
   height: auto;
@@ -278,7 +279,7 @@ body {
   background-color: navy;
   color: white;
 }
-/*=====TÃ¹y chá»‰nh kiá»ƒu trang "edit_user"=========*/
+/*=====TÃƒÆ’Ã‚Â¹y chÃƒÂ¡Ã‚Â»Ã¢â‚¬Â°nh kiÃƒÂ¡Ã‚Â»Ã†â€™u trang "edit_user"=========*/
 .main-edit {
   width: 600px;
   height: auto;
@@ -312,7 +313,7 @@ body {
 .main-edit input[type='submit']:hover {
   background: #4691A4;
 }
-/*====Táº¡o kiá»ƒu cho create-user.php =====*/
+/*====TÃƒÂ¡Ã‚ÂºÃ‚Â¡o kiÃƒÂ¡Ã‚Â»Ã†â€™u cho create-user.php =====*/
 .main .create-user {
   width: 600px;
   height: auto;
@@ -366,7 +367,7 @@ body {
 .main #section #label #note #note-title {
   color: red;
 }
-/*===TÃ¹y chá»‰nh kiá»ƒu trang subject.php====*/
+/*===TÃƒÆ’Ã‚Â¹y chÃƒÂ¡Ã‚Â»Ã¢â‚¬Â°nh kiÃƒÂ¡Ã‚Â»Ã†â€™u trang subject.php====*/
 .main .main-title {
   margin: 10px 1%;
 }
@@ -426,7 +427,7 @@ body {
   padding : 3px;
 }
 
-/*Tùy chỉnh kiểu tạo nhóm học phần mới*/
+/*TÃƒÂ¹y chÃ¡Â»â€°nh kiÃ¡Â»Æ’u tÃ¡ÂºÂ¡o nhÃƒÂ³m hÃ¡Â»Âc phÃ¡ÂºÂ§n mÃ¡Â»â€ºi*/
 .main .create-subject {
   width: 800px;
   border: 1px solid black;
@@ -463,4 +464,117 @@ body {
 .create-subject form #input:last-child input {
   width: 100px;
   margin: 20px 50px;
+}
+.main .edit-subject {
+  width: 700px;
+  height: 500px;
+  border: 1px solid;
+  margin: 10px auto;
+  text-align: right;
+  box-sizing: border-box;
+  border-top: 6px solid green;
+}
+.edit-subject form {
+  margin: 10px auto;
+  width: 80%;
+  height: 400px;
+  box-sizing: border-box;
+  padding: 20px;
+}
+.edit-subject form #input {
+  width: 100%;
+  display: block;
+}
+.edit-subject form #input label, .edit-subject form #input input{
+  width: 50%;
+  float: left;
+  box-sizing:border-box;
+  margin-top: 20px;
+  height: 30px;
+  line-height: 30px;
+}
+.edit-subject form #input label {
+  padding-right: 10px;
+  color : gray;
+}
+.edit-subject form #input:last-child {
+  width: 50%;
+  float: right;
+}
+.edit-subject form #input input[type='submit'] {
+  width: 100px;
+  margin-right: 20px;
+  background-color: #AFC3E8;
+  border: 1px solid;
+  font-weight: bold;
+}
+
+.add-student-subject {
+  width: 800px;
+  background-color: #f5fbfb;
+  margin: 10px auto;
+  height: auto;
+  box-sizing: border-box;
+  border: 1px solid;
+  border-top: 5px solid #7fca7f;
+}
+
+.add-student-subject .title {
+  margin-left: 10px;
+  color: #9595d8;
+
+}
+
+.add-student-subject #section  {
+  box-sizing: border-box;
+  width: 98%;
+  height: auto;
+  padding: 10px;
+  border : 1px solid;
+  margin: 10px auto;
+  border-radius: 4px;
+}
+
+.add-student-subject #section-content {
+  display: inline-block;
+  width: 48%;
+}
+
+.add-student-subject input[type='submit'] {
+  margin-left: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #0020ff;
+  padding: 10px 20px;
+  color: blue;
+}
+.add-student-subject label {
+  float: left;
+  margin-right: 20px;
+  color : #09889c;
+  font-weight: bold;
+}
+.add-student-subject input[type='submit']:hover {
+  border: 1px solid #a0201c;
+  color: #fff;
+  background-color: blue;
+  cursor: pointer;
+}
+
+/*Tuy chinh trang teacher index*/
+.main .container {
+  width: 98%;
+  margin: 10px auto;
+  height: auto;
+  border : 1px solid;
+}
+
+.container #hr , .container #title,.container #section {
+  width: 98%;
+  margin: 10px auto;
+}
+
+.container #section {
+  height: 100px;
+  border: 1px solid;
+  margin-bottom: 10px;
 }

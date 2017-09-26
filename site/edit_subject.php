@@ -61,7 +61,7 @@
      ?>
 
      <div class="main">
-       <div class="edit_subject">
+       <div class="edit-subject">
          <form action="<?php $_SERVER['PHP_SELF']; ?>" method="post">
            <?php
             $result = mysqli_query($con,"SELECT * FROM giangvien_hp WHERE Id = $id");
