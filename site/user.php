@@ -8,7 +8,7 @@
   </head>
   <body>
     <?php
-      include 'session.php';
+      session_start();
       include 'header.php';
     ?>
     <!--Day la phan content -->

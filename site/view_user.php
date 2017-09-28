@@ -7,7 +7,7 @@
   </head>
   <body>
     <?php
-      include 'session.php';
+      session_start();
       include 'connection.php';
       include 'header.php';
       include 'class.user.php';

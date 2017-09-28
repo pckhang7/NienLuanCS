@@ -10,12 +10,23 @@
       return $sql;
     }
 
+
     //Hàm lấy tất cả nhóm học phần của giảng viên nào đó
     public function get_all_subject_teacher($ma_gv) {
       $sql = "SELECT *
               FROM giangvien_hp AS gv_hp, hocphan AS hp, hocki AS hk , namhoc AS nh
               WHERE gv_hp.Ma_HK = hk.Ma_HK AND gv_hp.Ma_NH = nh.Ma_NH AND
               gv_hp.Ma_HP = hp.Ma_HP AND gv_hp.Ma_GV = '$ma_gv'";
+      return $sql;
+    }
+
+    //Hàm lấy tất cả nhóm học phần của giảng viên theo nhóm học phần nào đó
+    public function get_all_subject_teacher_id($ma_gv,$ma_hp) {
+      $sql = "SELECT *
+              FROM giangvien_hp AS gv_hp, hocphan AS hp, hocki AS hk , namhoc AS nh
+              WHERE gv_hp.Ma_HK = hk.Ma_HK AND gv_hp.Ma_NH = nh.Ma_NH AND
+              gv_hp.Ma_HP = hp.Ma_HP AND gv_hp.Ma_GV = '$ma_gv'
+              AND gv_hp.Ma_HP = '$ma_hp'";
       return $sql;
     }
 
@@ -26,6 +37,14 @@
               WHERE gv_hp.Ma_HK = hk.Ma_HK AND gv_hp.Ma_NH = nh.Ma_NH AND
               gv_hp.Ma_HP = hp.Ma_HP AND
               gv_hp.Ma_HK = '$hk' AND gv_hp.Ma_NH = '$nh'";
+      return $sql;
+    }
+
+    //Hàm lấy tất cả sinh viên của nhóm học phần của giảng viên nào đó
+    public function get_all_student_subject($ma_nhom,$ma_hp,$ma_hk,$ma_nh) {
+      $sql = "SELECT * FROM sinhvien_hp AS sv_hp , sinhvien AS sv
+              WHERE Ma_Nhom = '$ma_nhom' AND Ma_HP = '$ma_hp' AND Ma_HK = '$ma_hk'
+              AND Ma_NH = '$ma_nh' AND sv_hp.Ma_SV = sv.Ma_SV";
       return $sql;
     }
 
@@ -159,9 +178,16 @@
     }
 
     //Hàm lấy một nhóm học phần được giảng dạy theo mã thứ tự
-    public function select_one($con,$id) {
+    public function select_one_id($id) {
       $sql = "SELECT * FROM giangvien_hp as gv_hp, hocki as hk, namhoc as nh, hocphan as hp
               WHERE Id = '$id' AND gv_hp.Ma_HP = hp.Ma_HP AND gv_hp.Ma_HK = hk.Ma_HK
+                    AND gv_hp.Ma_NH = nh.Ma_NH";
+      return $sql;
+    }
+    //Hàm lấy một nhóm học phần từ bảng giảng viên học phần
+    public function select_one($ma_gv,$ma_nhom,$ma_hp,$ma_hk,$ma_nh) {
+      $sql = "SELECT * FROM giangvien_hp as gv_hp, hocki as hk, namhoc as nh, hocphan as hp
+              WHERE gv_hp.Ma_GV = '$ma_gv' AND gv_hp.Ma_HP = hp.Ma_HP AND gv_hp.Ma_HK = hk.Ma_HK
                     AND gv_hp.Ma_NH = nh.Ma_NH";
       return $sql;
     }
@@ -179,6 +205,22 @@
       $sql = "INSERT INTO sinhvien_hp (Ma_SV,Ma_Nhom,Ma_HP,Ma_HK,Ma_NH)
               VALUES ('$ma_sv','$ma_nhom','$ma_hp','$ma_hk','$ma_nh')";
       return $sql;
+    }
+
+    //Hàm tính tổng số lượng sinh viên học nhóm học phần nào đó
+    public function count_student_subject($con,$ma_nhom,$ma_hp,$ma_hk,$ma_nh) {
+      $sql = "SELECT count(*) AS count FROM sinhvien_hp
+              WHERE Ma_Nhom = '$ma_nhom' AND Ma_HP = '$ma_hp'
+              AND Ma_HK = '$ma_hk' AND Ma_NH = '$ma_nh'";
+      $result = mysqli_query($con,$sql);
+      while ($row = mysqli_fetch_assoc($result)) {
+        if (intval($row['count']) > 0) {
+          return $row['count'];
+        }
+        else {
+          return 0;
+        }
+      }
     }
   }
  ?>

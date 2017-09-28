@@ -230,7 +230,7 @@ body {
 .section-table table td #delete {
   background-color: #d9534f;
 }
-/*====== TÃƒÆ’Ã‚Â¹y chÃƒÂ¡Ã‚Â»Ã¢â‚¬Â°nh trang "create_user.php" =======*/
+/*====== TÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¹y chÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â»ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â°nh trang "create_user.php" =======*/
 #error {
   color : red;
 }
@@ -254,7 +254,7 @@ body {
   margin: 10px;
 }
 
-/*=====TÃƒÆ’Ã‚Â¹y chÃƒÂ¡Ã‚Â»Ã¢â‚¬Â°nh trang "view_user" =======*/
+/*=====TÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¹y chÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â»ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â°nh trang "view_user" =======*/
 .user-profile{
   width: 800px;
   height: auto;
@@ -279,7 +279,7 @@ body {
   background-color: navy;
   color: white;
 }
-/*=====TÃƒÆ’Ã‚Â¹y chÃƒÂ¡Ã‚Â»Ã¢â‚¬Â°nh kiÃƒÂ¡Ã‚Â»Ã†â€™u trang "edit_user"=========*/
+/*=====TÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¹y chÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â»ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â°nh kiÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â»ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢u trang "edit_user"=========*/
 .main-edit {
   width: 600px;
   height: auto;
@@ -313,7 +313,7 @@ body {
 .main-edit input[type='submit']:hover {
   background: #4691A4;
 }
-/*====TÃƒÂ¡Ã‚ÂºÃ‚Â¡o kiÃƒÂ¡Ã‚Â»Ã†â€™u cho create-user.php =====*/
+/*====TÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚ÂºÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¡o kiÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â»ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢u cho create-user.php =====*/
 .main .create-user {
   width: 600px;
   height: auto;
@@ -367,7 +367,7 @@ body {
 .main #section #label #note #note-title {
   color: red;
 }
-/*===TÃƒÆ’Ã‚Â¹y chÃƒÂ¡Ã‚Â»Ã¢â‚¬Â°nh kiÃƒÂ¡Ã‚Â»Ã†â€™u trang subject.php====*/
+/*===TÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¹y chÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â»ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â°nh kiÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â»ÃƒÆ’Ã¢â‚¬Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢u trang subject.php====*/
 .main .main-title {
   margin: 10px 1%;
 }
@@ -427,7 +427,7 @@ body {
   padding : 3px;
 }
 
-/*TÃƒÂ¹y chÃ¡Â»â€°nh kiÃ¡Â»Æ’u tÃ¡ÂºÂ¡o nhÃƒÂ³m hÃ¡Â»Âc phÃ¡ÂºÂ§n mÃ¡Â»â€ºi*/
+/*TÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¹y chÃƒÆ’Ã‚Â¡Ãƒâ€šÃ‚Â»ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â°nh kiÃƒÆ’Ã‚Â¡Ãƒâ€šÃ‚Â»Ãƒâ€ Ã¢â‚¬â„¢u tÃƒÆ’Ã‚Â¡Ãƒâ€šÃ‚ÂºÃƒâ€šÃ‚Â¡o nhÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â³m hÃƒÆ’Ã‚Â¡Ãƒâ€šÃ‚Â»Ãƒâ€šÃ‚Âc phÃƒÆ’Ã‚Â¡Ãƒâ€šÃ‚ÂºÃƒâ€šÃ‚Â§n mÃƒÆ’Ã‚Â¡Ãƒâ€šÃ‚Â»ÃƒÂ¢Ã¢â€šÂ¬Ã‚Âºi*/
 .main .create-subject {
   width: 800px;
   border: 1px solid black;
@@ -510,7 +510,7 @@ body {
 }
 
 .add-student-subject {
-  width: 800px;
+  width: 1000px;
   background-color: #f5fbfb;
   margin: 10px auto;
   height: auto;
@@ -534,7 +534,24 @@ body {
   margin: 10px auto;
   border-radius: 4px;
 }
-
+.add-student-subject table {
+  box-sizing: border-box;
+  width: 100%;
+  border-collapse: collapse;
+}
+.add-student-subject table td {
+  height: 30px;
+  width: 100px;
+}
+.add-student-subject table input {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+.add-student-subject table input[type='number'] {
+  background-color: rgba(128, 128, 128, 0.3);
+}
 .add-student-subject #section-content {
   display: inline-block;
   width: 48%;
@@ -623,4 +640,70 @@ body {
 
 .container #section .table table th {
   background-color: #88d5e9;
+}
+
+/*Tuy chinh trang view_subject.php*/
+.main .view-subject {
+  width: 900px;
+  margin: 20px auto;
+  height : auto;
+  box-sizing: border-box;
+  border : 1px solid;
+  padding: 10px;
+}
+
+.main .view-subject input[type='text'] {
+  width : 100px;
+  border: 2px solid #ccc;
+  height: 30px;
+  border-radius: 4px;
+  transition : width 0.4s ease-in-out;
+}
+.main .view-subject input[type='submit'] {
+  height: 30px;
+  width: 100px;
+  margin-left: -40px;
+  border: 1px solid #82d8ef;
+  background-color: #3db8f7;
+  color : rgb(255, 241, 241);
+  font-weight: bold;
+}
+.main .view-subject input[type='text']:focus {
+  width: 500px;
+}
+
+.main .view-subject table {
+  text-align: center;
+  margin: 0 auto;
+  width: 780px;
+  height: auto;
+  border-collapse: collapse;
+}
+.main .view-subject table th {
+  background-color: #aabde2;
+  color : #6d4d7d;
+}
+.view-subject #title {
+  margin: 10px 50px 20px ;
+  color : #589fda;
+}
+
+.view-subject td:last-child {
+  box-sizing: border-box;
+  height: 50px;
+}
+
+.view-subject table td:last-child a {
+  text-decoration: none;
+  border: 1px solid;
+  box-sizing: border-box;
+  height: 50px;
+  padding: 5px;
+  margin:  20px auto;
+  background-color: #9595d8;
+  color : white;
+}
+.view-subject table td:last-child a:hover {
+  background-color: #0020ff;
+  color : white;
 }

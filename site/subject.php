@@ -1,5 +1,5 @@
 <?php
-  include 'session.php';
+  session_start();
   include 'connection.php';
   include 'header.php';
  ?>
@@ -104,7 +104,7 @@
                 echo "<td>{$row['Ten_NH']}</td>";
                 echo "<td>{$row['Ma_GV']}</td>";
                 echo "<td><a href='edit_subject.php?id={$row["Id"]}'>Sửa</a></td>";
-                echo "<td><a href='add_student_subject.php?id={$row["Id"]}'>Thêm sinh viên</a></td>";
+                echo "<td><a href='add_student_subject.php?id={$row["Id"]}>Thêm sinh viên</a></td>";
                 echo "<td><a href='delete_subject.php?id={$row["Id"]}' onclick='return confirm(\"Bạn có chắc nhóm học phần ! \")'>Xóa</a></td>";
               echo "</tr>";
             }

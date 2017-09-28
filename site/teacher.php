@@ -7,8 +7,8 @@
   </head>
   <body>
     <?php
+    session_start();
     include 'connection.php';
-    include 'session.php';
     include 'header.php';
     include 'class.teacher.php';
     $teacher = new teacher();

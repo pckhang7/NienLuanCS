@@ -10,48 +10,29 @@
     <meta charset="utf-8">
     <title>Trang xem danh sách học phần của từng giảng viên</title>
     <link rel="stylesheet" href="../css/login.css">
-    <!-- Include JQuery , JQuery UI -->
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 
-    <!-- Autocomplete search box -->
-    <script type="text/javascript">
-      $(function() {
-        $("#search").autocomplete({
-          source : 'search.php'
-        });
-      });
-    </script>
   </head>
   <body>
     <?php
       $subject = new subject();
       $ma_gv = $_SESSION['username'];
       $sql = $subject->get_all_subject_teacher($ma_gv);
-      //Nếu người dùng tìm kiếm
-      if (isset($_POST['tim'])) {
-        $ma_hp = mysqli_escape_string($con,$_POST['search']);
-        if ($ma_hp != '') {
-          $sql = $subject->get_all_subject_teacher_id($ma_gv,$ma_hp);
-        }
-      }
       $result = mysqli_query($con,$sql);
      ?>
 
      <!-- main -->
      <div class="main">
        <div class="view-subject">
-         <form class="" action="<?php $_SERVER['PHP_SELF'] ?>" method="post">
-           <div class="ui-widget">
-             <input type="text" name="search" id="search">
-             <input type="submit" name="tim" value="Tìm">
-           </div>
-         </form>
+         <div id="title">
+           <h2>Danh sách nhóm học phần giảng dạy sinh viên</h2>
+         </div>
          <?php
             while($row = mysqli_fetch_assoc($result)) {
-              $count = $subject->count_student_subject($con,$row['Ma_Nhom'],$row['Ma_HP'],
-                                  $row['Ma_HK'],$row['Ma_NH']);
+              //base64_encode : mã hóa dữ liệu bằng cơ sở MIME base64
+              $ma_nhom = base64_encode($row['Ma_Nhom']);
+              $ma_hp = base64_encode($row['Ma_HP']);
+              $ma_hk = base64_encode($row['Ma_HK']);
+              $ma_nh = base64_encode($row['Ma_NH']);
           ?>
          <table border="1">
            <tr>
@@ -60,7 +41,7 @@
              <th>Tên học phần</th>
              <th>Học kì</th>
              <th>Năm học</th>
-             <th>Số sinh viên</th>
+             <th>Thao tác</th>
            </tr>
            <?php
            echo "<tr>";
@@ -69,7 +50,7 @@
                 echo "<td>{$row['Ten_HP']}</td>";
                 echo "<td>{$row['Ten_HK']}</td>";
                 echo "<td>{$row['Ten_NH']}</td>";
-                echo "<td>{$count}</td>";
+                echo "<td><a href='update_grade.php?var1={$ma_nhom}&amp;var2={$ma_hp}&amp;var3={$ma_hk}&amp;var4={$ma_nh}'>Cập nhật điểm sinh viên</td>";
            echo "</tr>";
             ?>
          </table>

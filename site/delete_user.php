@@ -1,6 +1,6 @@
 <?php
+  session_start();
   include 'connection.php';
-  include 'session.php';
   include 'class.user.php';
   $user = new user();
   $username = null;

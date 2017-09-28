@@ -1,6 +1,6 @@
 <?php
   include 'connection.php';
-  include 'session.php';
+  session_start();
   include 'class.student.php';
   include 'class.teacher.php';
   $student = new student();

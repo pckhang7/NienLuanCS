@@ -37,7 +37,7 @@
               <img src="../img/icon/profile.png" alt="">
             </div>
             <div id="text">
-              <a href="view_user.php?id=<?php echo $_SESSION['username'] ?>">Xem thông tin</a>
+              <a href="view_user.php?id=<?php echo $_SESSION['username'] ?>">Xem thông tin cá nhân</a>
             </div>
           </div>
           <div id="section-content">
@@ -45,7 +45,7 @@
               <img src="../img/icon/list.png" alt="">
             </div>
             <div id="text">
-              <a href="view_subject.php?id=<?php echo $_SESSION['username'] ?>">Xem danh sách nhóm học phần</a>
+              <a href="view_subject.php?id=<?php echo $ma_gv ?>">Xem danh sách nhóm học phần giảng dạy</a>
             </div>
           </div>
           <div id="section-content">
@@ -53,7 +53,7 @@
               <img src="../img/icon/edit.png" alt="">
             </div>
             <div id="text">
-              <a href="#">Cập nhật điểm sinh viên</a>
+              <a href="grade.php?id=<?php echo $ma_gv ?>">Cập nhật điểm sinh viên</a>
             </div>
           </div>
         </div>

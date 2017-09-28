@@ -7,7 +7,7 @@
   </head>
   <body>
     <?php
-      include 'session.php';
+      session_start();
       include 'header.php';
       include 'connection.php';
       include 'class.subject.php';
@@ -40,7 +40,7 @@
 
      <!-- Main -->
      <?php
-      $sql = $subject->select_one($con,$id);
+      $sql = $subject->select_one_id($id);
       $result = mysqli_query($con,$sql);
       while($row = mysqli_fetch_assoc($result)) {
 
