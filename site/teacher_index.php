@@ -59,9 +59,6 @@
         </div>
         <div id="section">
           <p><h4>::Danh sách nhóm học phần giảng dạy::</h4></p><br>
-          <?php
-            while($row = mysqli_fetch_assoc($result)) {
-           ?>
           <div class="table">
             <table border="1">
               <tr>
@@ -71,17 +68,18 @@
                 <th>Năm học</th>
               </tr>
               <?php
+              while($row = mysqli_fetch_assoc($result)) {
               echo "<tr>";
                    echo "<td>{$row['Ma_Nhom']}</td>";
                    echo "<td>{$row['Ma_HP']}</td>";
                    echo "<td>{$row['Ten_HK']}</td>";
                    echo "<td>{$row['Ten_NH']}</td>";
               echo "</tr>";
-               ?>
+              }
+              ?>
             </table>
           </div>
           <?php
-            }
             mysqli_close($con);
            ?>
         </div>

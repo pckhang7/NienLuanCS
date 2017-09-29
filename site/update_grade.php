@@ -12,22 +12,43 @@
       include 'class.user.php';
       include 'connection.php';
       include 'class.subject.php';
+      include 'class.grade.php';
       $ma_gv = $_SESSION['username'];
       $ma_nhom = base64_decode($_GET['var1']);
       $ma_hp = base64_decode($_GET['var2']);
       $ma_hk = base64_decode($_GET['var3']);
       $ma_nh = base64_decode($_GET['var4']);
       $subject = new subject();
+      $grade = new grade();
       $readonly = 'readonly';
       $style = '';
       //Nếu người dùng nhấp nút cập nhật điểm
       if (isset($_POST['update'])) {
-        $stt =
-        $diem_gk = $_POST['diem_gk'];
-        $diem_ck = $_POST['diem_ck'];
-        $diem_th = $_POST['diem_th'];
-        $diem_c = $_POST['diem_c'];
-        $diem = $_POST['diem'];
+        //Tao mang sinh vien phuc vu cap nhat diem
+        $count = count($_POST['ma_sv']);
+        //Cap nhat diem cho moi sinh vien
+        for ($i = 0; $i < $count ; $i++) {
+          $ma_sv = $_POST['ma_sv'][$i];
+          $diem_gk = $_POST['diem_gk'][$i];
+          $diem_ck = $_POST['diem_ck'][$i];
+          $diem_th = $_POST['diem_th'][$i];
+          $diem_c = $_POST['diem_c'][$i];
+          $sql = $grade->update_grade($con,$ma_sv,$ma_nhom,$ma_hp,$ma_hk,$ma_nh,
+                  $diem_gk,$diem_ck,$diem_th,$diem_c);
+          if (mysqli_query($con,$sql)) {
+            echo "<script>
+                    alert('Cập nhật điểm thành công!');
+                    window.location.href='grade.php';
+                  </script>";
+          }
+          else {
+            echo "<script>
+                    alert('Có lỗi trong việc cập nhật điểm');
+                    window.location.href='{$_SERVER['PHP_SELF']}';
+                  </script>";
+          }
+        }
+
       }
       //Nếu người dùng nhấp nút chỉnh sửa
       if (isset($_POST['edit'])) {
@@ -86,7 +107,7 @@
                 </div>
               </div>
               <div id="section-content">
-                <label for="ma_nh">Mã học phần</label>
+                <label for="ma_nh">Năm học</label>
                 <div id="text">
                   <?php echo $row['Ten_NH'] ?>
                 </div>
@@ -103,12 +124,6 @@
           <div id="section">
             <label for="ds_diem">Danh sách điểm sinh viên</label>
             <br>
-            <?php
-              $sql1 = $subject->get_all_student_subject($ma_nhom,$ma_hp,$ma_hk,$ma_nh);
-              $result1 = mysqli_query($con,$sql1);
-              while($row = mysqli_fetch_assoc($result1)) {
-                $i = 1;
-             ?>
             <table border="1">
               <tr>
                 <th>Số thứ tự</th>
@@ -120,33 +135,39 @@
                 <th>Điểm cộng</th>
                 <th>Tổng điểm</th>
               </tr>
+              <?php
+              $sql1 = $subject->get_all_student_subject($ma_nhom,$ma_hp,$ma_hk,$ma_nh);
+              $result1 = mysqli_query($con,$sql1);
+              $i = 1;
+              while($row = mysqli_fetch_assoc($result1)) {
+               ?>
               <tr>
                 <?php
-                echo "<td>$i</td>";
-                echo "<td>{$row['Ma_SV']}</td>";
-                echo "<td>{$row['Ho']} . {$row['Ten']}</td>";
-                echo "<td>";
-                    echo "<input type='number' name='diem_gk' step='any' min='0' max='10' value='{$row['Diem_GK']}' $readonly $style>";
-                echo "</td>";
-                echo "<td>";
-                    echo "<input type='number' name='diem_hk' step='any' min='0' max='10' value='{$row['Diem_CK']}' $readonly $style>";
-                echo "</td>";
-                echo "<td>";
-                    echo "<input type='number' name='diem_th' step='any' min='0' max='5' value='{$row['Diem_TH']}' $readonly $style>";
-                echo "</td>";
-                echo "<td>";
-                    echo "<input type='number' name='diem_c' step='any' min='0' max='5' value='{$row['Diem_C']}' $readonly $style>";
-                echo "</td>";
-                echo "<td>";
-                    echo "<input type='number' name='diem' step='any' min='0' max='10' value='{$row['Diem']}' readonly>";
-                echo "</td>";
+                    echo "<td>$i</td>";
+                    $i++;
+                    echo "<td>";
+                        echo "<input type='hidden' name='ma_sv[]' value='{$row['Ma_SV']}'>{$row['Ma_SV']}";
+                    echo "</td>";
+                    echo "<td>{$row['Ho']} . {$row['Ten']}</td>";
+                    echo "<td>";
+                        echo "<input type='number' name='diem_gk[]' step='any' min='0' max='10' value={$row['Diem_GK']} $readonly $style>";
+                    echo "</td>";
+                    echo "<td>";
+                        echo "<input type='number' name='diem_ck[]' step='any' min='0' max='10' value={$row['Diem_CK']} $readonly $style>";
+                    echo "</td>";
+                    echo "<td>";
+                        echo "<input type='number' name='diem_th[]' step='any' min='0' max='5' value={$row['Diem_TH']} $readonly $style>";
+                    echo "</td>";
+                    echo "<td>";
+                        echo "<input type='number' name='diem_c[]' step='any' min='0' max='5' value={$row['Diem_C']} $readonly $style>";
+                    echo "</td>";
+                    echo "<td>";
+                        echo "<input type='number' name='diem[]' step='any' min='0' max='10' value={$row['Diem']} readonly>";
+                    echo "</td>";
+                  }
                  ?>
               </tr>
             </table>
-          <?php
-            $i++;
-            }
-            ?>
           </div>
           <input type="submit" name="update" value="Cập nhật">
           <input type="submit" name="edit" value="Chỉnh sửa" onclick="onchangecolor();">

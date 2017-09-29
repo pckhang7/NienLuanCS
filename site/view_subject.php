@@ -48,11 +48,6 @@
              <input type="submit" name="tim" value="Tìm">
            </div>
          </form>
-         <?php
-            while($row = mysqli_fetch_assoc($result)) {
-              $count = $subject->count_student_subject($con,$row['Ma_Nhom'],$row['Ma_HP'],
-                                  $row['Ma_HK'],$row['Ma_NH']);
-          ?>
          <table border="1">
            <tr>
              <th>Mã nhóm</th>
@@ -63,6 +58,9 @@
              <th>Số sinh viên</th>
            </tr>
            <?php
+           while($row = mysqli_fetch_assoc($result)) {
+             $count = $subject->count_student_subject($con,$row['Ma_Nhom'],$row['Ma_HP'],
+                                 $row['Ma_HK'],$row['Ma_NH']);
            echo "<tr>";
                 echo "<td>{$row['Ma_Nhom']}</td>";
                 echo "<td>{$row['Ma_HP']}</td>";
@@ -71,12 +69,11 @@
                 echo "<td>{$row['Ten_NH']}</td>";
                 echo "<td>{$count}</td>";
            echo "</tr>";
+         }
             ?>
          </table>
        </div>
-
        <?php
-        }
         mysqli_close($con);
         ?>
      </div>

@@ -188,7 +188,8 @@
     public function select_one($ma_gv,$ma_nhom,$ma_hp,$ma_hk,$ma_nh) {
       $sql = "SELECT * FROM giangvien_hp as gv_hp, hocki as hk, namhoc as nh, hocphan as hp
               WHERE gv_hp.Ma_GV = '$ma_gv' AND gv_hp.Ma_HP = hp.Ma_HP AND gv_hp.Ma_HK = hk.Ma_HK
-                    AND gv_hp.Ma_NH = nh.Ma_NH";
+              AND gv_hp.Ma_NH = nh.Ma_NH AND gv_hp.Ma_Nhom = '$ma_nhom' AND gv_hp.Ma_HP = '$ma_hp'
+              AND gv_hp.Ma_HK = '$ma_hk' AND gv_hp.Ma_NH = '$ma_nh'";
       return $sql;
     }
 
