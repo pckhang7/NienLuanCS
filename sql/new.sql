@@ -13,6 +13,12 @@ INSERT INTO hocphan VALUES ('CT178', 'Nguyên lý hệ điều hành', 3);
 INSERT INTO hocphan VALUES ('CT171', 'Nhập môn công nghệ phần mềm', 3);
 INSERT INTO hocphan VALUES ('CT109', 'Phân tích và thiết kế TT', 3);
 INSERT INTO hocphan VALUES ('CT332', 'Trí tuệ nhân tạo', 3);
+INSERT INTO hocphan VALUES ('CT101', 'Lập trình căn bản', 4);
+INSERT INTO hocphan VALUES ('TN012', 'Đại số tuyến tính và hình học', 4);
+INSERT INTO hocphan VALUES ('TN010', 'Xác xuất thống kê', 3);
+INSERT INTO hocphan VALUES ('CT103', 'Cấu trúc dữ liệu', 3);
+INSERT INTO hocphan VALUES ('CT180', 'Cơ sở dữ liệu', 3);
+INSERT INTO hocphan VALUES ('CT176', 'Lập trình hướng đối tượng', 3);
 --Insert bang sinh vien
 INSERT INTO sinhvien VALUES('B1401050','Nguyen', 'Van A','3/2,Q.Ninh Kieu, TP Can Tho','nva@gmail.com','09xxxxxx','DI14V7A2');
 INSERT INTO sinhvien VALUES('B1401051','Nguyen', 'Van B','3/2,Q.Ninh Kieu, TP Can Tho','nvb@gmail.com','09xxxxxx','DI14V7A2');

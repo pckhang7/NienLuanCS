@@ -36,10 +36,20 @@
           $sql = $grade->update_grade($con,$ma_sv,$ma_nhom,$ma_hp,$ma_hk,$ma_nh,
                   $diem_gk,$diem_ck,$diem_th,$diem_c);
           if (mysqli_query($con,$sql)) {
-            echo "<script>
-                    alert('Cập nhật điểm thành công!');
-                    window.location.href='grade.php';
-                  </script>";
+            //Cập nhật điểm trung bình học kì
+            $sql2 = $grade->update_grade_term($con,$ma_sv,$ma_hk,$ma_nh);
+            if (mysqli_query($con,$sql2)) {
+              echo "<script>
+                      alert('Cập nhật điểm thành công!');
+                      window.location.href='grade.php';
+                    </script>";
+            }
+            else {
+              echo "<script>
+                      alert('Cập nhật điểm thành công!');
+                      window.location.href='grade.php';
+                    </script>";
+            }
           }
           else {
             echo "<script>
@@ -54,6 +64,12 @@
       if (isset($_POST['edit'])) {
         $readonly = '';
         $style = "style=background-color:white;";
+      }
+      //Neu nguoi dung nhap nut cancel
+      if (isset($_POST['cancel'])) {
+        echo "<script>
+            window.location.href='grade.php'
+            </script>";
       }
      ?>
 
@@ -148,7 +164,7 @@
                     echo "<td>";
                         echo "<input type='hidden' name='ma_sv[]' value='{$row['Ma_SV']}'>{$row['Ma_SV']}";
                     echo "</td>";
-                    echo "<td>{$row['Ho']} . {$row['Ten']}</td>";
+                    echo "<td>{$row['Ho']} {$row['Ten']}</td>";
                     echo "<td>";
                         echo "<input type='number' name='diem_gk[]' step='any' min='0' max='10' value={$row['Diem_GK']} $readonly $style>";
                     echo "</td>";
@@ -171,6 +187,7 @@
           </div>
           <input type="submit" name="update" value="Cập nhật">
           <input type="submit" name="edit" value="Chỉnh sửa" onclick="onchangecolor();">
+          <input type="submit" name="cancel" value="Cancel">
         </form>
       </div>
      </div>

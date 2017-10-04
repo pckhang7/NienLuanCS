@@ -23,10 +23,19 @@
         $ma_sv = mysqli_escape_string($con,$_POST['ma_sv']);
         $sql = $subject->add_student_subject($con,$id,$ma_sv);
         if (mysqli_query($con,$sql)) {
-          echo "<script>
-                alert('Thêm sinh viên thành công!');
-                window.location.href='add_student_subject.php';
-              </script>";
+          $sql = $subject->add_student_grade($con,$id,$ma_sv);
+          if (mysqli_query($con,$sql)) {
+            echo "<script>
+                  alert('Thêm sinh viên thành công!');
+                  window.location.href='add_student_subject.php';
+                </script>";
+          }
+          else {
+            echo "<script>
+                  alert('Thêm sinh viên thành công!');
+                  window.location.href='add_student_subject.php';
+                </script>";
+          }
         }
         else {
           echo "<script>

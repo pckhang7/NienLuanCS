@@ -48,6 +48,27 @@
       return $sql;
     }
 
+    //Hàm lấy tất cả nhóm học phần của sinh viên nào đó
+    public function get_all_subject_student($ma_sv) {
+      $sql = "SELECT *
+              FROM sinhvien_hp AS sv_hp, hocphan AS hp, hocki AS hk , namhoc AS nh
+              WHERE sv_hp.Ma_HK = hk.Ma_HK AND sv_hp.Ma_NH = nh.Ma_NH AND
+              sv_hp.Ma_HP = hp.Ma_HP AND sv_hp.Ma_SV = '$ma_sv'";
+      return $sql;
+    }
+    //Hàm lấy tất cả học phần của sinh viên mot học kì nao đó
+    public function get_all_subject_student_term($ma_sv,$hk,$nh)
+    {
+      $sql = "SELECT *
+              FROM sinhvien_hp AS sv_hp, hocphan AS hp, hocki AS hk, namhoc AS nh
+              WHERE sv_hp.Ma_HP = hp.Ma_HP AND sv_hp.Ma_HK = hk.Ma_HK AND
+              sv_hp.Ma_NH = nh.Ma_NH AND sv_hp.Ma_SV = '$ma_sv' AND sv_hp.Ma_HK = '$hk'
+              AND sv_hp.Ma_NH = '$nh'";
+      return $sql;
+    }
+
+
+
     /*Hàm xóa một nhóm học phần, Nếu thực hiện xoá nhóm học phần đông nghĩa:
       +Xóa nhóm học phần giảng dạy của giảng viên
       +Có thể xóa nhóm học phần được học của sinh viên(nếu có)
@@ -193,7 +214,8 @@
       return $sql;
     }
 
-    //Hàm Thêm sinh viên vào nhóm học phần
+    /*Hàm Thêm sinh viên vào nhóm học phần
+    */
     public function add_student_subject($con,$id,$ma_sv) {
       $sql = "SELECT * FROM giangvien_hp WHERE Id= '$id' LIMIT 1";
       $result = mysqli_query($con,$sql);
@@ -205,6 +227,19 @@
       }
       $sql = "INSERT INTO sinhvien_hp (Ma_SV,Ma_Nhom,Ma_HP,Ma_HK,Ma_NH)
               VALUES ('$ma_sv','$ma_nhom','$ma_hp','$ma_hk','$ma_nh')";
+      return $sql;
+    }
+
+    //Hàm thêm sinh viên vào thêm sinh viên vào bảng điểm
+    public function add_student_grade($con,$id,$ma_sv) {
+      $sql = "SELECT * FROM giangvien_hp WHERE Id= '$id' LIMIT 1";
+      $result = mysqli_query($con,$sql);
+      while($row = mysqli_fetch_assoc($result)) {
+        $ma_hk = $row['Ma_HK'];
+        $ma_nh = $row['Ma_NH'];
+      }
+      $sql = "INSERT INTO diem (Ma_SV,Ma_HK,Ma_NH)
+              VALUES ('$ma_sv', '$ma_hk', '$ma_nh')";
       return $sql;
     }
 
