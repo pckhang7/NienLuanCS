@@ -36,15 +36,10 @@
           $sql = $grade->update_grade($con,$ma_sv,$ma_nhom,$ma_hp,$ma_hk,$ma_nh,
                   $diem_gk,$diem_ck,$diem_th,$diem_c);
           if (mysqli_query($con,$sql)) {
-            //Cập nhật điểm trung bình học kì
-            $sql2 = $grade->update_grade_term($con,$ma_sv,$ma_hk,$ma_nh);
-            if (mysqli_query($con,$sql2)) {
-              echo "<script>
-                      alert('Cập nhật điểm thành công!');
-                      window.location.href='grade.php';
-                    </script>";
-            }
-            else {
+            //Cập nhật điểm trung bình học kì và điểm trung bình tích lũy
+            $sql2 = $grade->update_grade_tbhk($ma_sv,$ma_hk,$ma_nh);
+            $sql3 = $grade->update_grade_tbtl($ma_sv,$ma_hk,$ma_nh);
+            if (mysqli_query($con,$sql2) && mysqli_query($con,$sql3)) {
               echo "<script>
                       alert('Cập nhật điểm thành công!');
                       window.location.href='grade.php';
@@ -58,7 +53,6 @@
                   </script>";
           }
         }
-
       }
       //Nếu người dùng nhấp nút chỉnh sửa
       if (isset($_POST['edit'])) {

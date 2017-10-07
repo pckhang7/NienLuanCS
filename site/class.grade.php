@@ -67,15 +67,18 @@ class grade {
   //Hàm tính điểm trung bình tích lũy của sinh viên nào đó, và luôn tính tới thòi điểm học
   public function average_grade_all($ma_sv,$ma_hk,$ma_nh) {
     //Cắt lấy phàn tử cuối của học kì
-    $hk = substr($ma_hk,strlen($ma_hk)-1,1);
-    $sql = "SELECT SUM(b1.diem * hp.So_TC)/SUM(hp.So_TC)
-            FROM hocphan AS hp,
-                (
-                  SELECT Ma_SV , Ma_HP, Ma_NH, Ma_HK, MAX(Diem_4) AS diem
-                  FROM sinhvien_hp
-                  WHERE Ma_SV = '$ma_sv'
-                  GROUP BY Ma_SV, Ma_HP, Ma_NH, Ma_HK ) as b1
-            WHERE b1.Ma_HP = hp.Ma_HP AND b1.Ma_NH <= $ma_nh AND RIGHT(b1.Ma_HK,1) <= $hk";
+    $sql = "SELECT SUM(b1.diem*hp.So_TC)/SuM(hp.So_TC)
+            FROM (
+                  SELECT DISTINCT b.Ma_SV, b.Ma_HP, sv_hp.Ma_HK, sv_hp.Ma_NH , b.diem
+	                FROM(
+                    	SELECT Ma_SV , Ma_HP , MAX(Diem_4) AS diem
+                    	FROM sinhvien_hp
+                    	WHERE Ma_SV = 'B1401051'
+                    	GROUP BY Ma_SV, Ma_HP) as b
+	                    , sinhvien_hp AS sv_hp
+	                WHERE b.Ma_SV = sv_hp.Ma_SV AND b.Ma_HP = sv_hp.Ma_HP AND b.diem = sv_hp.Diem_4
+                  ) as b1 , hocphan AS hp
+             WHERE b1.Ma_HP = hp.Ma_HP AND b1.Ma_HK <= '$ma_hk' AND b1.Ma_NH <= '$ma_nh'";
     return $sql;
   }
 
@@ -108,24 +111,49 @@ class grade {
         break;
     }
   }
-  //Hàm cập nhật điểm trung bình học kì mỗi sinh sinh
-  public function update_grade_term($con,$ma_sv,$ma_hk,$ma_nh) {
+  /*Hàm cập nhật điểm trung bình tich lũy tới học kì hiện tại
+    +Lấy điểm lớn nhất của tất cả các môn không trùng nhau (trường hợp học lại môn)
+    +Tính điểm TBTL tới hk hiện tại = TBTL(học kì hiện năm hiện tại vs năm trước đó)
+  */
+  public function update_grade_tbtl($ma_sv,$ma_hk,$ma_nh) {
     $sql = "UPDATE diem
-            SET diem.DiemTBHK = b1.diem_tbhk
-            FROM (
-                SELECT b.Ma_SV, b.Ma_HK, b.Ma_NH,sum(b.max*hp.So_TC)/sum(hp.So_TC) as diem_tbhk
-                FROM hocphan AS hp ,
-                    (
-                    SELECT Ma_SV , Ma_HK, Ma_NH, Ma_HP, MAX(Diem_4) as max
-                    FROM sinhvien_hp
-                    GROUP BY Ma_SV , Ma_HK, Ma_NH, Ma_HP
-                    ) as b
-                WHERE b.Ma_HP = hp.Ma_HP
-                AND b.Ma_HK = '$ma_hk' AND b.Ma_NH = '$ma_nh' AND b.Ma_SV = '$ma_sv'
-                GROUP By b.Ma_SV,b.Ma_HK, b.Ma_NH
+            INNER JOIN
+            (
+              SELECT b.Ma_SV,sum(b.max*hp.So_TC)/sum(hp.So_TC) as diem_tbtl, sum(hp.So_TC) as tong_tctl
+              FROM hocphan AS hp ,
+                (
+                SELECT Ma_SV , Ma_HK, Ma_NH, Ma_HP, MAX(Diem_4) as max
+                FROM sinhvien_hp
+                GROUP BY Ma_SV , Ma_HK, Ma_NH, Ma_HP
+                HAVING max >= 1
+                ) as b
+              WHERE (b.Ma_HP = hp.Ma_HP AND b.Ma_HK <= '$ma_hk' AND b.Ma_NH = '$ma_nh' AND b.Ma_SV = '$ma_sv')
+                  OR (b.Ma_HP = hp.Ma_HP AND b.Ma_NH < '$ma_nh' AND b.Ma_SV = '$ma_sv')
+              GROUP By b.Ma_SV
+            ) as b1
+            ON b1.Ma_SV = diem.Ma_SV
+            SET diem.DiemTBTL = b1.diem_tbtl , diem.Tong_TCTL = b1.tong_tctl
+            WHERE diem.Ma_HK = '$ma_hk' AND diem.Ma_NH = '$ma_nh'";
+    return $sql;
+  }
+
+  /*Ham tinh diem trung binh học kì
+    +Tính điểm trung bình học kì của mỗi học kì mỗi năm học
+  */
+  public function update_grade_tbhk($ma_sv,$ma_hk,$ma_nh) {
+    $sql = "UPDATE diem
+            INNER JOIN
+              (
+                SELECT sv_hp.Ma_SV, sv_hp.Ma_HK, sv_hp.Ma_NH,sum(sv_hp.Diem_4*hp.So_TC)/sum(hp.So_TC) as diem_tbhk,
+                       sum(hp.So_TC) as tong_tctlhk
+                FROM hocphan AS hp , sinhvien_hp AS sv_hp
+                WHERE sv_hp.Ma_HP = hp.Ma_HP
+                AND sv_hp.Ma_HK = '$ma_hk' AND sv_hp.Ma_NH = '$ma_nh' AND sv_hp.Ma_SV = '$ma_sv'
+                GROUP BY sv_hp.Ma_SV, sv_hp.Ma_HK, sv_hp.Ma_NH
               ) as b1
-            WHERE b1.Ma_SV = diem.Ma_SV AND b1.Ma_HK = diem.Ma_HK AND b1.Ma_NH = diem.Ma_NH
-              ";
+            ON b1.Ma_SV = diem.Ma_SV AND b1.Ma_HK = diem.Ma_HK AND b1.Ma_NH = diem.Ma_NH
+            SET diem.DiemTBHK = b1.diem_tbhk , diem.Tong_TCTLHK = b1.tong_tctlhk
+            ";
     return $sql;
   }
 }
