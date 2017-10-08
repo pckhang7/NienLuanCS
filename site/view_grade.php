@@ -21,13 +21,18 @@
      $hk = (isset($_POST['hocki'])) ? ($_POST['hocki']) : "hk1";
      $nh = (isset($_POST['namhoc'])) ? ($_POST['namhoc']) : "2017";
      //Nếu submit form , hiển thì điểm học phần tại học kì năm học hiện tại
-     $sql = $grade->get_all_grade($ma_sv,$hk,$nh);
+     $sql1  = $grade->get_all_grade_term($ma_sv,$hk,$nh);
+     $sql2 = $grade->get_all_grade_average($ma_sv,$hk,$nh);
      if (isset($_POST['submit'])) {
-       $sql = $grade->get_all_grade($ma_sv,$hk,$nh);
+       $sql1 = $grade->get_all_grade_term($ma_sv,$hk,$nh);
+       $sql2 = $grade->get_all_grade_average($ma_sv,$hk,$nh);
      }
      //truy van tat ca nhung mon hoc
      if (isset($_POST['all'])) {
-       $sql = $grade->get_all_grade($ma_sv,$hk,$nh);
+       $hk1 = "'' OR '' = '";
+       $nh = "' OR '' = '";
+       $sql1 = $grade->get_all_grade_term($ma_sv,$hk,$nh);
+       $sql2 = $grade->get_all_grade_average($ma_sv,$hk,$nh);
        $hk = "hk1";
        $nh = "2017";
      }
@@ -69,54 +74,46 @@
            <input type="submit" name="all" value="Xem tất cả">
          </form>
 
-         <div class="table">
-           <table border="1">
-             <tr>
-               <th>Mã học phần</th>
-               <th>Tên học phần</th>
-               <th>Số tín chỉ</th>
-               <th>Điểm số</th>
-               <th>Điểm Chữ</th>
-             </tr>
-             <?php
-              $result = mysqli_query($con,$sql);
-              while($row = mysqli_fetch_assoc($result)) {
-                $diem_chu = $grade->change_grade_number_text($row['Diem']);
-                echo "<tr>";
-                  echo "<td>{$row['Ma_HP']}</td>";
-                  echo "<td>{$row['Ten_HP']}</td>";
-                  echo "<td>{$row['So_TC']}</td>";
-                  echo "<td>{$row['Diem']}</td>";
-                  echo "<td>{$diem_chu}</td>";
-                echo "</tr>";
+         <?php
+          $result2 = mysqli_query($con,$sql2);
+          $count = mysqli_num_rows($result2);
+          while ($row2 = mysqli_fetch_assoc($result2)) {
+            $hk = $row2['Ma_HK'];
+            $nh = $row2['Ma_NH'];
+            $sql1 = $grade->get_all_grade_term($ma_sv,$hk,$nh);
+            $result1 = mysqli_query($con,$sql1);
+            echo "<div class='table'>";
+            echo "{$row2['Ma_HK']}";
+            echo "{$row2['Ma_NH']}";
+            echo "<table border='1'>";
+              echo "<tr>";
+                echo "<th>Mã Học Phần</th>";
+                echo "<th>Tên Học Phần</th>";
+                echo "<th>Số tín chỉ</th>";
+                echo "<th>Điểm số</th>";
+                echo "<th>Điểm chữ</th>";
+              echo "</tr>";
+            while ($row = mysqli_fetch_assoc($result1)) {
+                  echo "<tr>";
+                    echo "<td>{$row['Ma_HP']}</td>";
+                    echo "<td>{$row['Ten_HP']}</td>";
+                    echo "<td>{$row['So_TC']}</td>";
+                    echo "<td>{$row['Diem_4']}</td>";
+                    echo "<td>{$row['Diem']}</td>";
+                  echo "</tr>";
               }
-              ?>
-           </table>
-           <br>
-           <form>
-             <label for="dtb">Điểm trung bình học kì:
-               <?php
-               $sql = $grade->average_grade($ma_sv,$hk,$nh);
-               $result = mysqli_query($con,$sql);
-               $row = mysqli_fetch_array($result);
-               //Lam tron 2 chu so thap phan
-               echo round($row[0], 2, PHP_ROUND_HALF_EVEN);
-               ?>
-             </label>
-             <br>
-             <label for="dtb">Điểm trung tích lũy
-               <span>
-               <?php
-               $sql = $grade->average_grade_all($ma_sv,$hk,$nh);
-               $result = mysqli_query($con,$sql);
-               $row = mysqli_fetch_array($result);
-               //Lam tron 2 chu so thap phan
-               echo round($row[0], 2, PHP_ROUND_HALF_EVEN);
-               ?>
-             </span>
-             </label>
-           </form>
-         </div>
+              echo "</table>";
+              echo "</br>";
+              echo "<form>";
+                  echo "<label>Điểm trung bình học kì:{$row2['DiemTBHK']}</label></br>";
+                  echo "<label>Điểm trung bình tích lũy:{$row2['DiemTBTL']}</label></br>";
+                  echo "<label>Số tín chỉ tích lũy học kì: {$row2['Tong_TCTLHK']}</label></br>";
+                  echo "<label>Tổng số tín chỉ tích lũy: {$row2['Tong_TCTL']}</label></br>";
+              echo "</form>";
+            echo "</div>";
+          }
+            mysqli_close($con);
+          ?>
        </div>
      </div>
 

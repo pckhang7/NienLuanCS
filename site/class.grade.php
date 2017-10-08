@@ -48,11 +48,21 @@ class grade {
   }
 
 
-  //Hàm lấy bảng điểm cúa sinh viên học kì nào đó
-  public function get_all_grade($ma_sv,$ma_hk,$ma_nh) {
-    $sql = "SELECT * FROM sinhvien_hp AS sv_hp , hocphan AS hp
+  //Hàm lấy bảng điểm cúa sinh viên
+  public function get_all_grade_term($ma_sv,$ma_hk,$ma_nh) {
+    $sql = "SELECT * FROM sinhvien_hp as sv_hp , hocphan AS hp
             WHERE sv_hp.Ma_SV = '$ma_sv' AND sv_hp.Ma_HK = '$ma_hk' AND sv_hp.Ma_NH = '$ma_nh'
-            AND sv_hp.Ma_HP = hp.Ma_HP";
+            AND sv_hp.Ma_HP = hp.Ma_HP
+            ORDER BY sv_hp.Ma_SV , sv_hp.Ma_NH, sv_hp.Ma_HK
+            ";
+    return $sql;
+  }
+
+  //Hàm lấy điểm trung bình tích lũy (học kì, năm học) cũng như tín chỉ tích lũy
+  public function get_all_grade_average($ma_sv,$ma_hk,$ma_nh) {
+    $sql = "SELECT * FROM diem
+            WHERE Ma_SV = '$ma_sv' AND Ma_HK = '$ma_hk' AND Ma_NH = '$ma_nh'
+            ORDER BY Ma_SV, Ma_NH, Ma_HK";
     return $sql;
   }
 
@@ -144,15 +154,24 @@ class grade {
     $sql = "UPDATE diem
             INNER JOIN
               (
-                SELECT sv_hp.Ma_SV, sv_hp.Ma_HK, sv_hp.Ma_NH,sum(sv_hp.Diem_4*hp.So_TC)/sum(hp.So_TC) as diem_tbhk,
-                       sum(hp.So_TC) as tong_tctlhk
+                SELECT sv_hp.Ma_SV, sv_hp.Ma_HK, sv_hp.Ma_NH,sum(sv_hp.Diem_4*hp.So_TC)/sum(hp.So_TC) as diem_tbhk
                 FROM hocphan AS hp , sinhvien_hp AS sv_hp
                 WHERE sv_hp.Ma_HP = hp.Ma_HP
                 AND sv_hp.Ma_HK = '$ma_hk' AND sv_hp.Ma_NH = '$ma_nh' AND sv_hp.Ma_SV = '$ma_sv'
                 GROUP BY sv_hp.Ma_SV, sv_hp.Ma_HK, sv_hp.Ma_NH
               ) as b1
             ON b1.Ma_SV = diem.Ma_SV AND b1.Ma_HK = diem.Ma_HK AND b1.Ma_NH = diem.Ma_NH
-            SET diem.DiemTBHK = b1.diem_tbhk , diem.Tong_TCTLHK = b1.tong_tctlhk
+            INNER JOIN
+              (
+                SELECT sv_hp.Ma_SV, sv_hp.Ma_HK, sv_hp.Ma_NH,sum(hp.So_TC) as tong_tctlhk
+                FROM hocphan AS hp , sinhvien_hp AS sv_hp
+                WHERE sv_hp.Ma_HP = hp.Ma_HP
+                AND sv_hp.Ma_HK = '$ma_hk' AND sv_hp.Ma_NH = '$ma_nh' AND sv_hp.Ma_SV = '$ma_sv'
+                AND sv_hp.Diem_4 >= 1
+                GROUP BY sv_hp.Ma_SV, sv_hp.Ma_HK, sv_hp.Ma_NH
+              ) as b2
+            ON b2.Ma_SV = diem.Ma_SV AND b2.Ma_HK = diem.Ma_HK AND b2.Ma_NH = diem.Ma_NH
+            SET diem.DiemTBHK = b1.diem_tbhk, diem.Tong_TCTLHK = b2.tong_tctlhk
             ";
     return $sql;
   }

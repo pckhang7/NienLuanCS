@@ -580,6 +580,8 @@ body {
 /*Tuy chinh trang teacher index*/
 .main .container {
   width: 98%;
+  box-sizing: border-box;
+  padding-bottom: 20px;
   margin: 10px auto;
   height: auto;
   background-color: rgba(245, 251, 251, 0.59);
