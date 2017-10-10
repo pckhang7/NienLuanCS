@@ -175,5 +175,21 @@ class grade {
             ";
     return $sql;
   }
+
+  /*Ham dem so luong sinh vien theo loai , du lieu vao gom :
+    + năm hiện tại, điểm tối thiểu và điểm tối đa của loại
+  */
+  function count_rate($con, $year, $diem_tt, $diem_td) {
+    $sql = "SELECT COUNT(*) as loai
+            FROM (
+              SELECT AVG(DiemTBHK) as dtb, Ma_SV , Ma_NH
+              FROM diem
+              WHERE Ma_NH = '$year'
+              GROUP BY Ma_SV, Ma_NH) as t
+            WHERE t.dtb >= $diem_tt AND t.dtb <$diem_td";
+    $result = mysqli_query($con,$sql);
+    $row = mysqli_fetch_assoc($result);
+    return $row['loai'];
+  }
 }
  ?>

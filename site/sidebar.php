@@ -6,7 +6,7 @@
           <li><a href="subject.php">Quản lý học phần</a></li>
           <li><a href="student.php">Quản lý sinh viên</a></li>
           <li><a href="teacher.php">Quản lý giảng viên</a></li>
-          <li><a href="#">Thống kê</a></li>
+          <li><a href="statistic.php">Thống kê</a></li>
         </ul>
       </div>
 </div>
