@@ -17,7 +17,7 @@
       $subject = new subject();
       //Mặc định hiển thị học kì và năm học trong phần option
       $hk = (isset($_POST['hocki'])) ? ($_POST['hocki']) : "hk1";
-      $nh = (isset($_POST['namhoc'])) ? ($_POST['namhoc']) : "2017";;
+      $nh = (isset($_POST['namhoc'])) ? ($_POST['namhoc']) : "2017";
       $sql = $subject->get_all_subject($hk,$nh);
       //Nếu submit form , hiển thì học phần tại học kì năm học hiện tại
       if (isset($_POST['submit'])) {
