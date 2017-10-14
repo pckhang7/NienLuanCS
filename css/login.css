@@ -862,16 +862,25 @@ body {
   float: left;
   box-sizing: border-box;
 }
-.statistic #section table {
+.statistic #section:nth-child(2n+1) table{
   border-collapse: collapse;
   box-sizing: border-box;
   width: 98%;
   margin: 10px 0;
-  height: 250px;
+  height: auto;
+  min-height: 240px;
   text-align: center;
+}
+.statistic #section:nth-child(2n+2) table{
+  height: auto;
+  width: 98%;
+  box-sizing: border-box;
+  margin: 5px 0;
+  height: auto;
 }
 .statistic #section table th {
   background-color: #afc3e8;
+  height: 30px;
 }
 .statistic #section table tr:nth-child(2n+1) {
   background-color: #f5fbfb;

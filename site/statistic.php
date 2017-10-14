@@ -130,27 +130,11 @@
                 <input type="text" name="ma_nhom" placeholder="Mã nhóm" value="<?php echo $ma_nhom; ?>">
                 <input type="submit" name="submit" value="Thực hiện">
                 <input type="submit" name="export" value="Xuất file">
-
            </form>
 
            <div class="table">
              <?php
-             //Nếu người dùng nhấn nút xuất file
-             if (isset($_POST["export"])) {
-               header('Content-Type: application/vnd.ms-excel');
-               header('Content-Disposition: attachment; filename=data.xls');
-               $head = false;
-               $sql2 = "SELECT Ma_SV, Diem, Diem_4
-                        FROM sinhvien_hp
-                        WHERE Ma_HK = 'hk1' AND Ma_NH = '2014' AND Ma_HP = 'CT171' AND Ma_Nhom = '07'";
-               $result2 = mysqli_query($con,$sql2);
-               while($row = mysqli_fetch_assoc($result2)) {
-                 if(!$head) {
 
-                 }
-               }
-               fclose($output);
-             }
              //Nếu người dùng submit
              if (isset($_POST['submit'])) {
                $hk = $_POST['hocki'];
@@ -160,7 +144,6 @@
                $sql = "SELECT * FROM sinhvien_hp
                        WHERE Ma_HK = '$hk' AND Ma_NH = '$nh' AND Ma_HP = '$ma_hp' AND Ma_Nhom = '$ma_nhom'";
                $result = mysqli_query($con,$sql);
-
               ?>
              <!-- Hiển thị bảng điểm của sinh viên từng nhóm học phần -->
              <table>
@@ -180,6 +163,34 @@
              }
                 ?>
              </table>
+             <?php
+             //Nếu người dùng nhấn nút xuất file
+             if (isset($_POST["export"])) {
+               ob_end_clean();
+               $hk = $_POST['hocki'];
+               $nh = $_POST['namhoc'];
+               $ma_hp = mysqli_escape_string($con,$_POST['ma_hp']);
+               $ma_nhom = mysqli_escape_string($con,$_POST['ma_nhom']);
+               //Ten file luu
+               $filename = "$ma_hp" . "_$ma_nhom" . "_$hk" . "_$nh";
+               header("Content-Type: application/vnd.ms-excel");
+               header("Content-Disposition:attachment; filename=$filename.xls");
+               $output = '';
+               $sql = "SELECT Ma_SV, Diem, Diem_4, Diem_C
+                       FROM sinhvien_hp
+                       WHERE Ma_HK = '$hk' AND Ma_NH = '$nh' AND Ma_HP = '$ma_hp' AND Ma_Nhom = '$ma_nhom'";
+               $result = mysqli_query($con,$sql);
+               $flag = false;
+               while ($row = mysqli_fetch_assoc($result)) {
+                 if (!$flag) {
+                   echo implode("\t", array_keys($row)) . "\r\n";
+                   $flag = true;
+                 }
+                 echo implode("\t", array_values($row)) . "\r\n";
+               }
+               exit;
+             }
+              ?>
            </div>
            <?php
             mysqli_close($con);
